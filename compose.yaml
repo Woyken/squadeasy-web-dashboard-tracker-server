@@ -11,6 +11,7 @@ services:
   squadeasy-tracker-server:
     build:
       context: .
+    restart: unless-stopped
     environment:
       - NODE_ENV=production
       - EMAIL=${SQUADEASY_USERNAME}
@@ -33,10 +34,10 @@ services:
         condition: service_healthy
   squadeasy-postgres-db:
     image: timescale/timescaledb-ha:pg17
-    restart: always
-    user: postgres
+    restart: unless-stopped
+    user: 1000:1000
     volumes:
-      - ./db-data:/var/lib/postgresql/data
+      - ./squadeasy-postgres-db-data:/home/postgres/pgdata/data
     environment:
       - POSTGRES_DB=squadeasytrackerdb
       - POSTGRES_USER=${POSTGRES_USER}
