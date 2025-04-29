@@ -1,0 +1,33 @@
+{
+  "name": "squadeasy-web-dashboard-tracker-server",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "generate-client": "openapi-typescript https://woyken.github.io/squadeasy-api/openapi.yaml -o ./src/api/squadEasyApi.d.ts",
+    "prod": "node --experimental-strip-types ./src/app.ts",
+    "dev": "dotenvx run -f .env.local -f .env -- \"node --experimental-strip-types ./src/app.ts\"",
+    "dev:watch": "nodemon --watch src --ext ts --exec \"dotenvx run -f .env.local -f .env -- \"node --experimental-strip-types ./src/app.ts\"\"",
+    "db:init": "dotenvx run -f .env.local -f .env -- \"node --experimental-strip-types ./src/scripts/init-db.ts\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.10.0",
+  "dependencies": {
+    "@fastify/websocket": "^11.0.2",
+    "fastify": "^5.3.2",
+    "openapi-fetch": "^0.13.5",
+    "pg": "^8.15.5"
+  },
+  "devDependencies": {
+    "@dotenvx/dotenvx": "^1.41.0",
+    "@types/node": "^22.14.1",
+    "@types/pg": "^8.11.14",
+    "@types/ws": "^8.18.1",
+    "nodemon": "^3.1.10",
+    "openapi-typescript": "^7.6.1",
+    "typescript": "^5.8.3"
+  }
+}
