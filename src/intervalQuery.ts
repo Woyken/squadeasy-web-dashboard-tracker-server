@@ -29,35 +29,39 @@ async function handleFetchUserActivities(
   const now = Date.now();
 
   const userActivitiesFlat = userActivities.flatMap((x) =>
-    x.activities.map((a) => ({ userId: x.id, ...a }))
+    x.activities?.map((a) => ({ userId: x.id, ...a }))
   );
 
-  const onlyChangedUserActivities = userActivitiesFlat.filter((newUser) => {
-    const lastPointsAndValue = lastUsersActivities.find(
-      (activity) =>
-        activity.user_id === newUser.userId &&
-        activity.activity_id === newUser.activityId
-    );
-    if (
-      newUser.points !== lastPointsAndValue?.points ||
-      newUser.value !== lastPointsAndValue.value
-    )
-      return true;
+  const onlyChangedUserActivities = userActivitiesFlat
+    .filter((newActivity) => {
+      if (!newActivity) return false;
 
-    return false;
-  });
+      const lastPointsAndValue = lastUsersActivities.find(
+        (activity) =>
+          activity.user_id === newActivity.userId &&
+          activity.activity_id === newActivity.activityId
+      );
+      if (
+        newActivity.points !== lastPointsAndValue?.points ||
+        newActivity.value !== lastPointsAndValue.value
+      )
+        return true;
+
+      return false;
+    })
+    .filter((x) => !!x);
 
   await storeUserActivities(now, onlyChangedUserActivities);
 }
 
 async function fetchTeamUsersPoints(accessToken: string, id: string) {
   const teamUsersPoints = await queryTeamById(accessToken, id);
-  const teamUsers = teamUsersPoints.users.map((x) => ({
+  const teamUsers = teamUsersPoints.users?.map((x) => ({
     id: x.id,
     points: x.points,
     isActivityPublic: x.isActivityPublic,
   }));
-  return teamUsers;
+  return teamUsers ?? [];
 }
 
 async function handleFetchTeamsUsersPoints(
@@ -80,14 +84,18 @@ async function handleFetchTeamsUsersPoints(
   );
   const now = Date.now();
 
-  const onlyChangedUsersScores = teamsUsersFlat.filter((newUser) => {
-    const lastUserPoints = lastUsersPoints.find(
-      (x) => x.user_id === newUser.id
-    )?.points;
-    if (newUser.points !== lastUserPoints) return true;
+  const onlyChangedUsersScores = teamsUsersFlat
+    .filter((newUser) => {
+      const lastUserPoints = lastUsersPoints.find(
+        (x) => x.user_id === newUser.id
+      )?.points;
+      if (newUser.points === undefined) return false;
 
-    return false;
-  });
+      if (newUser.points !== lastUserPoints) return true;
+
+      return false;
+    })
+    .map((x) => ({ ...x, points: x.points ?? 0 }));
 
   if (onlyChangedUsersScores.length === 0) {
     console.log("no users scores changed");
@@ -115,17 +123,18 @@ async function handleScheduledTeamsFetch() {
   const now = Date.now();
   const teamsDataResponse = await querySeasonRanking(accessToken);
 
-  const onlyChangedTeamsScores = teamsDataResponse.teams
-    .map((newTeam) => {
+  const onlyChangedTeamsScores = teamsDataResponse.elements?.filter(
+    (newTeam) => {
       const lastTeamScore = lastTeamsPoints.find(
         (x) => x.team_id === newTeam.id
       )?.points;
 
-      if (newTeam.points !== lastTeamScore) return newTeam;
-    })
-    .filter((x) => !!x);
+      if (newTeam.points !== lastTeamScore) return true;
+      return false;
+    }
+  );
 
-  if (onlyChangedTeamsScores.length === 0) {
+  if (!onlyChangedTeamsScores || onlyChangedTeamsScores.length === 0) {
     console.log("no teams scores changed");
     return;
   }
@@ -141,6 +150,9 @@ async function handleScheduledTeamsFetch() {
 
 async function getIsChallengeOngoing(accessToken: string) {
   const challenge = await queryMyChallenge(accessToken);
+
+  if (!challenge.startAt || !challenge.endAt) return false;
+
   const startAt = new Date(challenge.startAt).getTime();
   const endAt = new Date(challenge.endAt).getTime();
   const now = Date.now();

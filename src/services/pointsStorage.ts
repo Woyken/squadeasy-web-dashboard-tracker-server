@@ -148,7 +148,7 @@ export async function storeTeamData(
   timestamp: number,
   teams: {
     id: string;
-    points: number;
+    points?: number;
   }[]
 ): Promise<void> {
   if (!teams || teams.length === 0) {

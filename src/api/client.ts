@@ -55,11 +55,20 @@ export async function queryMyTeam(accessToken: string, userId: string) {
 }
 
 export async function querySeasonRanking(accessToken: string) {
-  const result = await squadEasyClient.GET("/api/2.0/my/ranking/season", {
-    headers: {
-      authorization: `Bearer ${accessToken}`,
-    },
-  });
+  const result = await squadEasyClient.GET(
+    "/api/3.0/ranking/{type}/{seasonId}",
+    {
+      params: {
+        path: {
+          seasonId: "a",
+          type: "a",
+        },
+      },
+      headers: {
+        authorization: `Bearer ${accessToken}`,
+      },
+    }
+  );
   if (!result.data)
     throw new Error(`Get teams failed ${JSON.stringify(result.error)}`);
   return result.data;
@@ -111,11 +120,9 @@ export async function mutationRefreshToken(
     {
       params: {
         header: {
-          "refresh-token": refreshToken,
+          Authorization: `Bearer ${accessToken}`,
+          "Refresh-Token": refreshToken,
         },
-      },
-      headers: {
-        authorization: `Bearer ${accessToken}`,
       },
     }
   );
