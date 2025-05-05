@@ -1,8 +1,13 @@
 import createClient from "openapi-fetch";
 import type { paths } from "./squadEasyApi";
+import type { paths as msPaths } from "./squadEasyMsApi";
 
 const squadEasyClient = createClient<paths>({
   baseUrl: "https://api-challenge.squadeasy.com",
+});
+
+const squadEasyMsClient = createClient<msPaths>({
+  baseUrl: "https://api.ms.squadeasy.com",
 });
 
 export async function queryMyChallenge(accessToken: string) {
