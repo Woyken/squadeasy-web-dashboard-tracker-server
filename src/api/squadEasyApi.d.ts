@@ -13,7 +13,7 @@ export interface paths {
         };
         get?: never;
         put?: never;
-        post: operations["AuthService_postTODO2_0_auth_forgot_password"];
+        post: operations["AuthService_forgotPassword"];
         delete?: never;
         options?: never;
         head?: never;
@@ -27,7 +27,7 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        get: operations["SocialWallService_getTODO2_0_blogs_posts__post_id_"];
+        get: operations["SocialWallService_getBlogPost"];
         put?: never;
         post?: never;
         delete?: never;
@@ -45,7 +45,7 @@ export interface paths {
         };
         get?: never;
         put?: never;
-        post: operations["CourseService_postTODO2_0_courses_search"];
+        post: operations["CourseService_searchCourses"];
         delete?: never;
         options?: never;
         head?: never;
@@ -59,7 +59,7 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        get: operations["CourseService_getTODO2_0_courses_sources"];
+        get: operations["CourseService_getCourseSources"];
         put?: never;
         post?: never;
         delete?: never;
@@ -75,7 +75,7 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        get: operations["EnvironmentService_getTODO2_0_entities__spaceId_"];
+        get: operations["EnvironmentService_getSpaceGroups"];
         put?: never;
         post?: never;
         delete?: never;
@@ -93,7 +93,7 @@ export interface paths {
         };
         get?: never;
         put?: never;
-        post: operations["AnalyticsService_postTODO2_0_event"];
+        post: operations["AnalyticsService_postEvent"];
         delete?: never;
         options?: never;
         head?: never;
@@ -109,7 +109,7 @@ export interface paths {
         };
         get?: never;
         put?: never;
-        post: operations["EnvironmentService_postTODO2_0_landing_spaces_validate"];
+        post: operations["EnvironmentService_validateSpaceCode"];
         delete?: never;
         options?: never;
         head?: never;
@@ -123,7 +123,7 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        get: operations["EnvironmentService_getTODO2_0_languages"];
+        get: operations["EnvironmentService_getLanguages"];
         put?: never;
         post?: never;
         delete?: never;
@@ -139,7 +139,7 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        get: operations["ActivityService_getTODO2_0_my_activities"];
+        get: operations["ActivityService_getMyActivities"];
         put?: never;
         post?: never;
         delete?: never;
@@ -155,7 +155,7 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        get: operations["ActivityService_getTODO2_0_my_activities__activityID_mission"];
+        get: operations["ActivityService_getActivityMissions"];
         put?: never;
         post?: never;
         delete?: never;
@@ -171,7 +171,7 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        get: operations["ActivityService_getTODO2_0_my_activities__activityID_quiz"];
+        get: operations["ActivityService_getActivityQuizHistory"];
         put?: never;
         post?: never;
         delete?: never;
@@ -189,7 +189,7 @@ export interface paths {
         };
         get?: never;
         put?: never;
-        post: operations["SportService_postTODO2_0_my_activities__id_walk"];
+        post: operations["SportService_addWalkActivity"];
         delete?: never;
         options?: never;
         head?: never;
@@ -203,7 +203,7 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        get: operations["ActivityService_getTODO2_0_my_activities__activityID_gpshistory"];
+        get: operations["ActivityService_getActivityGpsHistory"];
         put?: never;
         post?: never;
         delete?: never;
@@ -219,9 +219,9 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        get: operations["ActivityService_getTODO2_0_my_activities__activityID___id_"];
+        get: operations["ActivityService_getActivityQuiz"];
         put?: never;
-        post: operations["ActivityService_postTODO2_0_my_activities__activityID___id_"];
+        post: operations["ActivityService_postActivityQuizAnswer"];
         delete?: never;
         options?: never;
         head?: never;
@@ -237,7 +237,7 @@ export interface paths {
         };
         get?: never;
         put?: never;
-        post: operations["SportService_postTODO2_0_my_activities__id_"];
+        post: operations["SportService_addSportGpsData"];
         delete?: never;
         options?: never;
         head?: never;
@@ -253,7 +253,7 @@ export interface paths {
         };
         get?: never;
         put?: never;
-        post: operations["SportService_postTODO2_0_my_activities__id__manual"];
+        post: operations["SportService_addManualSteps"];
         delete?: never;
         options?: never;
         head?: never;
@@ -267,7 +267,7 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        get: operations["ChallengeService_getTODO2_0_my_challenge"];
+        get: operations["ChallengeService_getLegacyMyChallenge"];
         put?: never;
         post?: never;
         delete?: never;
@@ -283,7 +283,7 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        get: operations["ChallengeService_getTODO2_0_my_challenge_marquee"];
+        get: operations["ChallengeService_getMyChallengeMarquee"];
         put?: never;
         post?: never;
         delete?: never;
@@ -299,7 +299,7 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        get: operations["ChallengeService_getTODO2_0_my_challenge_over"];
+        get: operations["ChallengeService_getLegacyMyChallengeOver"];
         put?: never;
         post?: never;
         delete?: never;
@@ -317,7 +317,7 @@ export interface paths {
         };
         get?: never;
         put?: never;
-        post: operations["CourseService_postTODO2_0_my_courses"];
+        post: operations["CourseService_submitMyCourse"];
         delete?: never;
         options?: never;
         head?: never;
@@ -333,7 +333,7 @@ export interface paths {
         };
         get?: never;
         put?: never;
-        post: operations["UserService_postTODO2_0_my_image"];
+        post: operations["UserService_uploadCurrentUserImage"];
         delete?: never;
         options?: never;
         head?: never;
@@ -353,7 +353,7 @@ export interface paths {
         delete?: never;
         options?: never;
         head?: never;
-        patch: operations["UserService_patchTODO2_0_my_password"];
+        patch: operations["UserService_updatePassword"];
         trace?: never;
     };
     "/api/2.0/my/quiz": {
@@ -363,7 +363,7 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        get: operations["ActivityService_getTODO2_0_my_quiz"];
+        get: operations["ActivityService_getMyQuizzes"];
         put?: never;
         post?: never;
         delete?: never;
@@ -379,7 +379,7 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        get: operations["SocialWallService_getTODO2_0_my_socialtags_available"];
+        get: operations["SocialWallService_getMyAvailableSocialTags"];
         put?: never;
         post?: never;
         delete?: never;
@@ -395,7 +395,7 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        get: operations["UserService_getTODO2_0_my_statistics"];
+        get: operations["UserService_getCurrentUserStatistics"];
         put?: never;
         post?: never;
         delete?: never;
@@ -411,13 +411,13 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        get: operations["TeamService_getTODO2_0_my_team"];
+        get: operations["TeamService_getMyTeam"];
         put?: never;
         post?: never;
         delete?: never;
         options?: never;
         head?: never;
-        patch: operations["TeamService_patchTODO2_0_my_team"];
+        patch: operations["TeamService_updateMyTeam"];
         trace?: never;
     };
     "/api/2.0/my/team/captain": {
@@ -433,7 +433,7 @@ export interface paths {
         delete?: never;
         options?: never;
         head?: never;
-        patch: operations["TeamService_patchTODO2_0_my_team_captain"];
+        patch: operations["TeamService_updateTeamCaptain"];
         trace?: never;
     };
     "/api/2.0/my/team/image": {
@@ -445,7 +445,7 @@ export interface paths {
         };
         get?: never;
         put?: never;
-        post: operations["TeamService_postTODO2_0_my_team_image"];
+        post: operations["TeamService_uploadMyTeamImage"];
         delete?: never;
         options?: never;
         head?: never;
@@ -461,7 +461,7 @@ export interface paths {
         };
         get?: never;
         put?: never;
-        post: operations["TeamService_postTODO2_0_my_team_kick"];
+        post: operations["TeamService_kickTeamMember"];
         delete?: never;
         options?: never;
         head?: never;
@@ -477,7 +477,7 @@ export interface paths {
         };
         get?: never;
         put?: never;
-        post: operations["TeamService_postTODO2_0_my_team_leave"];
+        post: operations["TeamService_leaveMyTeam"];
         delete?: never;
         options?: never;
         head?: never;
@@ -491,7 +491,7 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        get: operations["TeamService_getTODO2_0_my_team_statistics"];
+        get: operations["TeamService_getMyTeamStatistics"];
         put?: never;
         post?: never;
         delete?: never;
@@ -507,13 +507,13 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        get: operations["UserService_getTODO2_0_my_user"];
+        get: operations["UserService_getCurrentUser"];
         put?: never;
         post?: never;
-        delete: operations["UserService_deleteTODO2_0_my_user"];
+        delete: operations["UserService_deleteCurrentUser"];
         options?: never;
         head?: never;
-        patch: operations["UserService_patchTODO2_0_my_user"];
+        patch: operations["UserService_updateCurrentUser"];
         trace?: never;
     };
     "/api/2.0/rating/store/accept": {
@@ -525,7 +525,7 @@ export interface paths {
         };
         get?: never;
         put?: never;
-        post: operations["MainService_postTODO2_0_rating_store_accept"];
+        post: operations["MainService_acceptStoreRating"];
         delete?: never;
         options?: never;
         head?: never;
@@ -541,7 +541,7 @@ export interface paths {
         };
         get?: never;
         put?: never;
-        post: operations["MainService_postTODO2_0_rating_store_decline"];
+        post: operations["MainService_declineStoreRating"];
         delete?: never;
         options?: never;
         head?: never;
@@ -555,7 +555,7 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        get: operations["SocialWallService_getTODO2_0_social_posts_report_reasons"];
+        get: operations["SocialWallService_getReportReasons"];
         put?: never;
         post?: never;
         delete?: never;
@@ -571,7 +571,7 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        get: operations["SocialWallService_getTODO2_0_social_posts__post_id__liked_by"];
+        get: operations["SocialWallService_getSocialPostLikes"];
         put?: never;
         post?: never;
         delete?: never;
@@ -589,7 +589,7 @@ export interface paths {
         };
         get?: never;
         put?: never;
-        post: operations["SocialWallService_postTODO2_0_social_posts__post_id__report"];
+        post: operations["SocialWallService_reportSocialPost"];
         delete?: never;
         options?: never;
         head?: never;
@@ -603,7 +603,7 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        get: operations["SocialWallService_getTODO2_0_socialTags_list"];
+        get: operations["SocialWallService_getSocialTagList"];
         put?: never;
         post?: never;
         delete?: never;
@@ -619,7 +619,7 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        get: operations["SocialWallService_getTODO2_0_socialtags"];
+        get: operations["SocialWallService_getSocialTags"];
         put?: never;
         post?: never;
         delete?: never;
@@ -635,9 +635,9 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        get: operations["TeamService_getTODO2_0_teams"];
+        get: operations["TeamService_getTeams"];
         put?: never;
-        post: operations["TeamService_postTODO2_0_teams"];
+        post: operations["TeamService_createTeam"];
         delete?: never;
         options?: never;
         head?: never;
@@ -653,7 +653,7 @@ export interface paths {
         };
         get?: never;
         put?: never;
-        post: operations["TeamService_postTODO2_0_teams_search"];
+        post: operations["TeamService_searchTeams"];
         delete?: never;
         options?: never;
         head?: never;
@@ -667,7 +667,7 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        get: operations["TeamService_getTODO2_0_teams__id_"];
+        get: operations["TeamService_getTeam"];
         put?: never;
         post?: never;
         delete?: never;
@@ -685,7 +685,7 @@ export interface paths {
         };
         get?: never;
         put?: never;
-        post: operations["TeamService_postTODO2_0_teams__id__join"];
+        post: operations["TeamService_joinTeam"];
         delete?: never;
         options?: never;
         head?: never;
@@ -699,7 +699,7 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        get: operations["UserService_getTODO2_0_users"];
+        get: operations["UserService_getUsers"];
         put?: never;
         post?: never;
         delete?: never;
@@ -717,7 +717,7 @@ export interface paths {
         };
         get?: never;
         put?: never;
-        post: operations["UserService_postTODO2_0_users_search"];
+        post: operations["UserService_searchUsers"];
         delete?: never;
         options?: never;
         head?: never;
@@ -733,7 +733,7 @@ export interface paths {
         };
         get?: never;
         put?: never;
-        post: operations["AuthService_postTODO2_0_users_validate_account_code"];
+        post: operations["AuthService_validateAccountCode"];
         delete?: never;
         options?: never;
         head?: never;
@@ -749,7 +749,7 @@ export interface paths {
         };
         get?: never;
         put?: never;
-        post: operations["AuthService_postTODO2_0_users_validate_account_send_email"];
+        post: operations["AuthService_sendAccountValidationEmail"];
         delete?: never;
         options?: never;
         head?: never;
@@ -763,7 +763,7 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        get: operations["UserService_getTODO2_0_users__id_"];
+        get: operations["UserService_getUser"];
         put?: never;
         post?: never;
         delete?: never;
@@ -781,7 +781,7 @@ export interface paths {
         };
         get?: never;
         put?: never;
-        post: operations["UserService_postTODO2_0_users__id__block"];
+        post: operations["UserService_blockUser"];
         delete?: never;
         options?: never;
         head?: never;
@@ -797,7 +797,7 @@ export interface paths {
         };
         get?: never;
         put?: never;
-        post: operations["UserService_postTODO2_0_users__id__boost"];
+        post: operations["UserService_boostUser"];
         delete?: never;
         options?: never;
         head?: never;
@@ -811,7 +811,7 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        get: operations["UserService_getTODO2_0_users__id__statistics"];
+        get: operations["UserService_getUserStatistics"];
         put?: never;
         post?: never;
         delete?: never;
@@ -829,7 +829,7 @@ export interface paths {
         };
         get?: never;
         put?: never;
-        post: operations["UserService_postTODO2_0_users__id__unblock"];
+        post: operations["UserService_unblockUser"];
         delete?: never;
         options?: never;
         head?: never;
@@ -843,7 +843,7 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        get: operations["ActivityService_getTODO3_0_activities"];
+        get: operations["ActivityService_getActivities"];
         put?: never;
         post?: never;
         delete?: never;
@@ -859,7 +859,7 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        get: operations["SportService_getTODO3_0_activity_groups_gps"];
+        get: operations["SportService_getGpsActivityGroups"];
         put?: never;
         post?: never;
         delete?: never;
@@ -875,7 +875,7 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        get: operations["SportService_getTODO3_0_activity_groups_mobility_reasons"];
+        get: operations["SportService_getMobilityReasons"];
         put?: never;
         post?: never;
         delete?: never;
@@ -893,7 +893,7 @@ export interface paths {
         };
         get?: never;
         put?: never;
-        post: operations["AuthService_postTODO3_0_auth_login"];
+        post: operations["AuthService_login"];
         delete?: never;
         options?: never;
         head?: never;
@@ -909,7 +909,7 @@ export interface paths {
         };
         get?: never;
         put?: never;
-        post: operations["AuthService_postTODO3_0_auth_refresh_token"];
+        post: operations["AuthService_refreshToken"];
         delete?: never;
         options?: never;
         head?: never;
@@ -925,7 +925,7 @@ export interface paths {
         };
         get?: never;
         put?: never;
-        post: operations["AuthService_postTODO3_0_auth_register"];
+        post: operations["AuthService_register"];
         delete?: never;
         options?: never;
         head?: never;
@@ -939,7 +939,7 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        get: operations["HomeService_getTODO3_0_badges"];
+        get: operations["HomeService_getBadges"];
         put?: never;
         post?: never;
         delete?: never;
@@ -955,7 +955,7 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        get: operations["SocialWallService_getTODO3_0_blogs_posts_SocialWallService_getTODO3_0_blogs_posts_noparams"];
+        get: operations["SocialWallService_getBlogPosts_SocialWallService_getBlogPostsNoParams"];
         put?: never;
         post?: never;
         delete?: never;
@@ -971,7 +971,7 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        get: operations["HomeService_getTODO3_0_boosts_received"];
+        get: operations["HomeService_getReceivedBoosts"];
         put?: never;
         post?: never;
         delete?: never;
@@ -987,7 +987,7 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        get: operations["MainService_getTODO3_0_bottom_nav_MainService_getTODO3_0_bottom_nav_noparams"];
+        get: operations["MainService_getBottomNav_MainService_getBottomNavNoParams"];
         put?: never;
         post?: never;
         delete?: never;
@@ -1003,7 +1003,7 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        get: operations["ChallengeService_getTODO3_0_global_missions_active"];
+        get: operations["ChallengeService_getActiveGlobalMissions"];
         put?: never;
         post?: never;
         delete?: never;
@@ -1019,7 +1019,7 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        get: operations["ChallengeService_getTODO3_0_global_missions_over"];
+        get: operations["ChallengeService_getOverGlobalMissions"];
         put?: never;
         post?: never;
         delete?: never;
@@ -1035,7 +1035,7 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        get: operations["HomeService_getTODO3_0_missions_activities_ongoing"];
+        get: operations["HomeService_getOngoingMissions"];
         put?: never;
         post?: never;
         delete?: never;
@@ -1051,7 +1051,7 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        get: operations["HomeService_getTODO3_0_missions_activities_over"];
+        get: operations["HomeService_getOverMissions"];
         put?: never;
         post?: never;
         delete?: never;
@@ -1067,7 +1067,7 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        get: operations["HomeService_getTODO3_0_missions_activities_upcoming"];
+        get: operations["HomeService_getUpcomingMissions"];
         put?: never;
         post?: never;
         delete?: never;
@@ -1083,13 +1083,13 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        get: operations["ActivityService_getTODO3_0_my_activities__activityID___id_"];
+        get: operations["ActivityService_getActivityGpsDetails"];
         put?: never;
         post?: never;
         delete?: never;
         options?: never;
         head?: never;
-        patch: operations["ActivityService_patchTODO3_0_my_activities__activityID___id_"];
+        patch: operations["ActivityService_updateActivityGpsDetails"];
         trace?: never;
     };
     "/api/3.0/my/challenge": {
@@ -1099,7 +1099,7 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        get: operations["ChallengeService_getTODO3_0_my_challenge"];
+        get: operations["ChallengeService_getMyChallenge"];
         put?: never;
         post?: never;
         delete?: never;
@@ -1115,7 +1115,7 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        get: operations["HomeService_getTODO3_0_my_home"];
+        get: operations["HomeService_getMyHome"];
         put?: never;
         post?: never;
         delete?: never;
@@ -1131,7 +1131,7 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        get: operations["AuthService_getTODO3_0_onboarding_discover"];
+        get: operations["AuthService_getOnboardingDiscover"];
         put?: never;
         post?: never;
         delete?: never;
@@ -1147,7 +1147,7 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        get: operations["ActivityService_getTODO3_0_quizzes_answered"];
+        get: operations["ActivityService_getAnsweredQuizzes"];
         put?: never;
         post?: never;
         delete?: never;
@@ -1163,7 +1163,7 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        get: operations["ActivityService_getTODO3_0_quizzes_un_answered"];
+        get: operations["ActivityService_getUnansweredQuizzes"];
         put?: never;
         post?: never;
         delete?: never;
@@ -1179,7 +1179,7 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        get: operations["RankingService_getTODO3_0_ranking__type___seasonId_"];
+        get: operations["RankingService_getRanking"];
         put?: never;
         post?: never;
         delete?: never;
@@ -1195,7 +1195,7 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        get: operations["RankingService_getTODO3_0_ranking__type___seasonId__elements"];
+        get: operations["RankingService_getRankingElements"];
         put?: never;
         post?: never;
         delete?: never;
@@ -1211,7 +1211,7 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        get: operations["RankingService_getTODO3_0_ranking__type___seasonId__elements_me"];
+        get: operations["RankingService_getMyRankingElement"];
         put?: never;
         post?: never;
         delete?: never;
@@ -1227,7 +1227,7 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        get: operations["RankingService_getTODO3_0_ranking__type___seasonId__elements_search"];
+        get: operations["RankingService_searchRankingElements"];
         put?: never;
         post?: never;
         delete?: never;
@@ -1243,7 +1243,7 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        get: operations["EnvironmentService_getTODO3_0_settings"];
+        get: operations["EnvironmentService_getSettings"];
         put?: never;
         post?: never;
         delete?: never;
@@ -1261,7 +1261,7 @@ export interface paths {
         };
         get?: never;
         put?: never;
-        post: operations["SocialWallService_postTODO3_0_social_posts_SocialWallService_postTODO3_0_social_posts_2params_SocialWallService_postTODO3_0_social_posts_3Params_SocialWallService_postTODO3_0_social_posts_messagebody_SocialWallService_postTODO3_0_social_posts_onepart"];
+        post: operations["SocialWallService_createSocialPostWithMedia_SocialWallService_createSocialPostWith2Params_SocialWallService_createSocialPostWith3Params_SocialWallService_createSocialPostWithMessage_SocialWallService_createSocialPostWithOnePart"];
         delete?: never;
         options?: never;
         head?: never;
@@ -1275,13 +1275,13 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        get: operations["SocialWallService_getTODO3_0_social_posts__post_id_"];
+        get: operations["SocialWallService_getSocialPost"];
         put?: never;
-        post: operations["SocialWallService_postSocialPostById"];
-        delete: operations["SocialWallService_deleteTODO3_0_social_posts__post_id_"];
+        post: operations["SocialWallService_createSocialPostById"];
+        delete: operations["SocialWallService_deleteSocialPost"];
         options?: never;
         head?: never;
-        patch: operations["SocialWallService_patchTODO3_0_social_posts__post_id_"];
+        patch: operations["SocialWallService_updateSocialPost"];
         trace?: never;
     };
     "/api/3.0/social/posts/{post_id}/comments/{comment_id}": {
@@ -1294,7 +1294,7 @@ export interface paths {
         get?: never;
         put?: never;
         post?: never;
-        delete: operations["SocialWallService_deleteTODO3_0_social_posts__post_id__comments__comment_id_"];
+        delete: operations["SocialWallService_deleteSocialPostComment"];
         options?: never;
         head?: never;
         patch?: never;
@@ -1308,9 +1308,9 @@ export interface paths {
             cookie?: never;
         };
         get?: never;
-        put: operations["SocialWallService_put3_0_social_posts__post_id__comments__comment_id__like"];
+        put: operations["SocialWallService_likeSocialPostComment"];
         post?: never;
-        delete: operations["SocialWallService_deleteTODO3_0_social_posts__post_id__comments__comment_id__like"];
+        delete: operations["SocialWallService_deleteSocialPostCommentLike"];
         options?: never;
         head?: never;
         patch?: never;
@@ -1324,9 +1324,9 @@ export interface paths {
             cookie?: never;
         };
         get?: never;
-        put: operations["SocialWallService_putTODO3_0_social_posts__post_id__like"];
+        put: operations["SocialWallService_likeSocialPost"];
         post?: never;
-        delete: operations["SocialWallService_deleteTODO3_0_social_posts__post_id__like"];
+        delete: operations["SocialWallService_unlikeSocialPost"];
         options?: never;
         head?: never;
         patch?: never;
@@ -1341,7 +1341,7 @@ export interface paths {
         };
         get?: never;
         put?: never;
-        post: operations["SocialWallService_postTODO3_0_social_posts__post_id__moderate__actionId_"];
+        post: operations["SocialWallService_moderateSocialPost"];
         delete?: never;
         options?: never;
         head?: never;
@@ -1355,7 +1355,7 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        get: operations["HomeService_getTODO3_0_survey__id_"];
+        get: operations["HomeService_getSurvey"];
         put?: never;
         post?: never;
         delete?: never;
@@ -1373,7 +1373,7 @@ export interface paths {
         };
         get?: never;
         put?: never;
-        post: operations["HomeService_postTODO3_0_survey__id__answer"];
+        post: operations["HomeService_answerSurvey"];
         delete?: never;
         options?: never;
         head?: never;
@@ -1387,7 +1387,7 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        get: operations["TeamService_getTODO3_0_team_detail__id_"];
+        get: operations["TeamService_getTeamDetails"];
         put?: never;
         post?: never;
         delete?: never;
@@ -1403,7 +1403,7 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        get: operations["TeamService_getTODO3_0_teams_management"];
+        get: operations["TeamService_getTeamManagement"];
         put?: never;
         post?: never;
         delete?: never;
@@ -1419,7 +1419,7 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        get: operations["TutorialsService_getTODO3_0_tutorials__helpId_"];
+        get: operations["TutorialsService_getTutorials"];
         put?: never;
         post?: never;
         delete?: never;
@@ -1435,7 +1435,7 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        get: operations["ActivityService_getTODO3_0_user_activity_groups"];
+        get: operations["ActivityService_getUserActivityGroups"];
         put?: never;
         post?: never;
         delete?: never;
@@ -1453,7 +1453,7 @@ export interface paths {
         };
         get?: never;
         put?: never;
-        post: operations["SportService_postTODO3_0_user_activity_groups_start"];
+        post: operations["SportService_startSportSession"];
         delete?: never;
         options?: never;
         head?: never;
@@ -1473,7 +1473,7 @@ export interface paths {
         delete?: never;
         options?: never;
         head?: never;
-        patch: operations["ActivityService_patchTODO3_0_user_activity_groups__userActivityGroupId__SportService_patchTODO3_0_user_activity_groups__userActivityGroupId_"];
+        patch: operations["ActivityService_updateUserActivityGroup_SportService_updateUserActivityGroupMobilityReason"];
         trace?: never;
     };
     "/api/3.0/user-activity-groups/{userActivityGroupId}/end": {
@@ -1485,7 +1485,7 @@ export interface paths {
         };
         get?: never;
         put?: never;
-        post: operations["SportService_postTODO3_0_user_activity_groups__userActivityGroupId__end"];
+        post: operations["SportService_endUserActivityGroup"];
         delete?: never;
         options?: never;
         head?: never;
@@ -1501,7 +1501,7 @@ export interface paths {
         };
         get?: never;
         put?: never;
-        post: operations["SportService_postTODO3_0_user_activity_groups__userActivityGroupId__ping"];
+        post: operations["SportService_pingUserActivityGroup"];
         delete?: never;
         options?: never;
         head?: never;
@@ -1515,9 +1515,9 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        get: operations["ActivityService_getTODO3_0_user_activity_groups__userActivityGroupId__segments"];
+        get: operations["ActivityService_getUserActivityGroupSegments"];
         put?: never;
-        post: operations["SportService_postTODO3_0_user_activity_groups__userActivityGroupId__segments"];
+        post: operations["SportService_addSportSegments"];
         delete?: never;
         options?: never;
         head?: never;
@@ -1531,9 +1531,9 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        get: operations["UserService_getTODO3_0_user_classifications"];
+        get: operations["UserService_getUserClassifications"];
         put?: never;
-        post: operations["UserService_postTODO3_0_user_classifications"];
+        post: operations["UserService_setUserClassifications"];
         delete?: never;
         options?: never;
         head?: never;
@@ -1547,7 +1547,7 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        get: operations["UserService_getTODO3_0_user_profile__userId_"];
+        get: operations["UserService_getUserProfile"];
         put?: never;
         post?: never;
         delete?: never;
@@ -1563,7 +1563,7 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        get: operations["UserService_getTODO3_0_user_status"];
+        get: operations["UserService_getUserStatus"];
         put?: never;
         post?: never;
         delete?: never;
@@ -1579,7 +1579,7 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        get: operations["UserService_getTODO3_0_users_blocked_users"];
+        get: operations["UserService_getBlockedUsers"];
         put?: never;
         post?: never;
         delete?: never;
@@ -1595,9 +1595,9 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        get: operations["UserService_getTODO3_0_users_me_accept_legals_consent"];
+        get: operations["UserService_getAcceptedLegalConsents"];
         put?: never;
-        post: operations["UserService_postTODO3_0_users_me_accept_legals_consent"];
+        post: operations["UserService_acceptLegalConsent"];
         delete?: never;
         options?: never;
         head?: never;
@@ -1611,7 +1611,7 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        get: operations["CO2Service_getTODO4_0_co2_summary"];
+        get: operations["CO2Service_getCo2Summary"];
         put?: never;
         post?: never;
         delete?: never;
@@ -1627,7 +1627,7 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        get: operations["HomeService_getTODO4_0_histories_activity_gps_last_activity_command"];
+        get: operations["HomeService_getLastActivityCommand"];
         put?: never;
         post?: never;
         delete?: never;
@@ -1643,7 +1643,7 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        get: operations["ActivityService_getTODO4_0_histories_activity_gps__id_"];
+        get: operations["ActivityService_getActivityGpsSummary"];
         put?: never;
         post?: never;
         delete?: never;
@@ -1659,7 +1659,7 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        get: operations["ActivityService_getTODO4_0_histories_gps"];
+        get: operations["ActivityService_getGpsHistories"];
         put?: never;
         post?: never;
         delete?: never;
@@ -1675,7 +1675,7 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        get: operations["ActivityService_getTODO4_0_histories__type___seasonId_"];
+        get: operations["ActivityService_getHistories"];
         put?: never;
         post?: never;
         delete?: never;
@@ -1691,7 +1691,7 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        get: operations["HomeService_getTODO4_0_home"];
+        get: operations["HomeService_getHome"];
         put?: never;
         post?: never;
         delete?: never;
@@ -1707,7 +1707,7 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        get: operations["SocialWallService_getTODO4_0_social_posts"];
+        get: operations["SocialWallService_getSocialPosts"];
         put?: never;
         post?: never;
         delete?: never;
@@ -1723,7 +1723,7 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        get: operations["SportService_getTODO4_0_steps_updated_at"];
+        get: operations["SportService_getStepsUpdatedAt"];
         put?: never;
         post?: never;
         delete?: never;
@@ -1739,7 +1739,7 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        get: operations["WeatherService_getTODO4_0_weather"];
+        get: operations["WeatherService_getWeatherForecast"];
         put?: never;
         post?: never;
         delete?: never;
@@ -2912,7 +2912,16 @@ export interface components {
             description?: string;
             buttonTitle?: string;
         };
-        UserActivityStatsRemoteEntity: Record<string, never>;
+        UserActivityStatsRemoteEntity: {
+            activityId: string;
+            type: string;
+            /** Format: int32 */
+            points: number;
+            /** Format: int32 */
+            value: number;
+            title: string;
+            isHistoryEmpty: boolean;
+        };
         UserBlockedRemoteEntity: {
             id: string;
             firstName: string;
@@ -2948,7 +2957,12 @@ export interface components {
             newPassword?: string;
             oldPassword?: string;
         };
-        UserProfileActivityRemoteEntity: Record<string, never>;
+        UserProfileActivityRemoteEntity: {
+            id: string;
+            name: string;
+            value: number;
+            SIType: string;
+        };
         UserProfileBoostedByRemoteEntity: {
             id: string;
             imageUrl?: string;
@@ -3037,7 +3051,7 @@ export interface components {
 }
 export type $defs = Record<string, never>;
 export interface operations {
-    AuthService_postTODO2_0_auth_forgot_password: {
+    AuthService_forgotPassword: {
         parameters: {
             query?: never;
             header?: never;
@@ -3059,7 +3073,7 @@ export interface operations {
             };
         };
     };
-    SocialWallService_getTODO2_0_blogs_posts__post_id_: {
+    SocialWallService_getBlogPost: {
         parameters: {
             query?: never;
             header?: never;
@@ -3081,7 +3095,7 @@ export interface operations {
             };
         };
     };
-    CourseService_postTODO2_0_courses_search: {
+    CourseService_searchCourses: {
         parameters: {
             query?: never;
             header?: never;
@@ -3105,7 +3119,7 @@ export interface operations {
             };
         };
     };
-    CourseService_getTODO2_0_courses_sources: {
+    CourseService_getCourseSources: {
         parameters: {
             query?: never;
             header?: never;
@@ -3125,7 +3139,7 @@ export interface operations {
             };
         };
     };
-    EnvironmentService_getTODO2_0_entities__spaceId_: {
+    EnvironmentService_getSpaceGroups: {
         parameters: {
             query?: never;
             header?: never;
@@ -3147,7 +3161,7 @@ export interface operations {
             };
         };
     };
-    AnalyticsService_postTODO2_0_event: {
+    AnalyticsService_postEvent: {
         parameters: {
             query?: never;
             header?: never;
@@ -3169,7 +3183,7 @@ export interface operations {
             };
         };
     };
-    EnvironmentService_postTODO2_0_landing_spaces_validate: {
+    EnvironmentService_validateSpaceCode: {
         parameters: {
             query?: never;
             header?: never;
@@ -3193,7 +3207,7 @@ export interface operations {
             };
         };
     };
-    EnvironmentService_getTODO2_0_languages: {
+    EnvironmentService_getLanguages: {
         parameters: {
             query?: never;
             header?: never;
@@ -3213,7 +3227,7 @@ export interface operations {
             };
         };
     };
-    ActivityService_getTODO2_0_my_activities: {
+    ActivityService_getMyActivities: {
         parameters: {
             query?: never;
             header?: never;
@@ -3233,7 +3247,7 @@ export interface operations {
             };
         };
     };
-    ActivityService_getTODO2_0_my_activities__activityID_mission: {
+    ActivityService_getActivityMissions: {
         parameters: {
             query?: never;
             header?: never;
@@ -3255,7 +3269,7 @@ export interface operations {
             };
         };
     };
-    ActivityService_getTODO2_0_my_activities__activityID_quiz: {
+    ActivityService_getActivityQuizHistory: {
         parameters: {
             query?: never;
             header?: never;
@@ -3277,7 +3291,7 @@ export interface operations {
             };
         };
     };
-    SportService_postTODO2_0_my_activities__id_walk: {
+    SportService_addWalkActivity: {
         parameters: {
             query?: never;
             header?: never;
@@ -3301,7 +3315,7 @@ export interface operations {
             };
         };
     };
-    ActivityService_getTODO2_0_my_activities__activityID_gpshistory: {
+    ActivityService_getActivityGpsHistory: {
         parameters: {
             query?: never;
             header?: never;
@@ -3323,7 +3337,7 @@ export interface operations {
             };
         };
     };
-    ActivityService_getTODO2_0_my_activities__activityID___id_: {
+    ActivityService_getActivityQuiz: {
         parameters: {
             query?: never;
             header?: never;
@@ -3346,7 +3360,7 @@ export interface operations {
             };
         };
     };
-    ActivityService_postTODO2_0_my_activities__activityID___id_: {
+    ActivityService_postActivityQuizAnswer: {
         parameters: {
             query?: never;
             header?: never;
@@ -3373,7 +3387,7 @@ export interface operations {
             };
         };
     };
-    SportService_postTODO2_0_my_activities__id_: {
+    SportService_addSportGpsData: {
         parameters: {
             query?: never;
             header?: never;
@@ -3399,7 +3413,7 @@ export interface operations {
             };
         };
     };
-    SportService_postTODO2_0_my_activities__id__manual: {
+    SportService_addManualSteps: {
         parameters: {
             query?: never;
             header?: never;
@@ -3423,7 +3437,7 @@ export interface operations {
             };
         };
     };
-    ChallengeService_getTODO2_0_my_challenge: {
+    ChallengeService_getLegacyMyChallenge: {
         parameters: {
             query?: never;
             header?: never;
@@ -3443,7 +3457,7 @@ export interface operations {
             };
         };
     };
-    ChallengeService_getTODO2_0_my_challenge_marquee: {
+    ChallengeService_getMyChallengeMarquee: {
         parameters: {
             query?: never;
             header?: never;
@@ -3463,7 +3477,7 @@ export interface operations {
             };
         };
     };
-    ChallengeService_getTODO2_0_my_challenge_over: {
+    ChallengeService_getLegacyMyChallengeOver: {
         parameters: {
             query?: never;
             header?: never;
@@ -3483,7 +3497,7 @@ export interface operations {
             };
         };
     };
-    CourseService_postTODO2_0_my_courses: {
+    CourseService_submitMyCourse: {
         parameters: {
             query?: never;
             header?: never;
@@ -3505,7 +3519,7 @@ export interface operations {
             };
         };
     };
-    UserService_postTODO2_0_my_image: {
+    UserService_uploadCurrentUserImage: {
         parameters: {
             query?: never;
             header?: never;
@@ -3529,7 +3543,7 @@ export interface operations {
             };
         };
     };
-    UserService_patchTODO2_0_my_password: {
+    UserService_updatePassword: {
         parameters: {
             query?: never;
             header?: never;
@@ -3551,7 +3565,7 @@ export interface operations {
             };
         };
     };
-    ActivityService_getTODO2_0_my_quiz: {
+    ActivityService_getMyQuizzes: {
         parameters: {
             query?: never;
             header?: never;
@@ -3571,7 +3585,7 @@ export interface operations {
             };
         };
     };
-    SocialWallService_getTODO2_0_my_socialtags_available: {
+    SocialWallService_getMyAvailableSocialTags: {
         parameters: {
             query?: never;
             header?: never;
@@ -3591,7 +3605,7 @@ export interface operations {
             };
         };
     };
-    UserService_getTODO2_0_my_statistics: {
+    UserService_getCurrentUserStatistics: {
         parameters: {
             query?: never;
             header?: never;
@@ -3611,7 +3625,7 @@ export interface operations {
             };
         };
     };
-    TeamService_getTODO2_0_my_team: {
+    TeamService_getMyTeam: {
         parameters: {
             query?: never;
             header?: never;
@@ -3631,7 +3645,7 @@ export interface operations {
             };
         };
     };
-    TeamService_patchTODO2_0_my_team: {
+    TeamService_updateMyTeam: {
         parameters: {
             query?: never;
             header?: never;
@@ -3653,7 +3667,7 @@ export interface operations {
             };
         };
     };
-    TeamService_patchTODO2_0_my_team_captain: {
+    TeamService_updateTeamCaptain: {
         parameters: {
             query?: never;
             header?: never;
@@ -3675,7 +3689,7 @@ export interface operations {
             };
         };
     };
-    TeamService_postTODO2_0_my_team_image: {
+    TeamService_uploadMyTeamImage: {
         parameters: {
             query?: never;
             header?: never;
@@ -3699,7 +3713,7 @@ export interface operations {
             };
         };
     };
-    TeamService_postTODO2_0_my_team_kick: {
+    TeamService_kickTeamMember: {
         parameters: {
             query?: never;
             header?: never;
@@ -3721,7 +3735,7 @@ export interface operations {
             };
         };
     };
-    TeamService_postTODO2_0_my_team_leave: {
+    TeamService_leaveMyTeam: {
         parameters: {
             query?: never;
             header?: never;
@@ -3739,7 +3753,7 @@ export interface operations {
             };
         };
     };
-    TeamService_getTODO2_0_my_team_statistics: {
+    TeamService_getMyTeamStatistics: {
         parameters: {
             query?: never;
             header?: never;
@@ -3759,7 +3773,7 @@ export interface operations {
             };
         };
     };
-    UserService_getTODO2_0_my_user: {
+    UserService_getCurrentUser: {
         parameters: {
             query?: never;
             header?: never;
@@ -3779,7 +3793,7 @@ export interface operations {
             };
         };
     };
-    UserService_deleteTODO2_0_my_user: {
+    UserService_deleteCurrentUser: {
         parameters: {
             query?: never;
             header?: never;
@@ -3797,7 +3811,7 @@ export interface operations {
             };
         };
     };
-    UserService_patchTODO2_0_my_user: {
+    UserService_updateCurrentUser: {
         parameters: {
             query?: never;
             header?: never;
@@ -3819,7 +3833,7 @@ export interface operations {
             };
         };
     };
-    MainService_postTODO2_0_rating_store_accept: {
+    MainService_acceptStoreRating: {
         parameters: {
             query?: never;
             header?: never;
@@ -3837,7 +3851,7 @@ export interface operations {
             };
         };
     };
-    MainService_postTODO2_0_rating_store_decline: {
+    MainService_declineStoreRating: {
         parameters: {
             query?: never;
             header?: never;
@@ -3855,7 +3869,7 @@ export interface operations {
             };
         };
     };
-    SocialWallService_getTODO2_0_social_posts_report_reasons: {
+    SocialWallService_getReportReasons: {
         parameters: {
             query?: never;
             header?: never;
@@ -3875,7 +3889,7 @@ export interface operations {
             };
         };
     };
-    SocialWallService_getTODO2_0_social_posts__post_id__liked_by: {
+    SocialWallService_getSocialPostLikes: {
         parameters: {
             query?: never;
             header?: never;
@@ -3897,7 +3911,7 @@ export interface operations {
             };
         };
     };
-    SocialWallService_postTODO2_0_social_posts__post_id__report: {
+    SocialWallService_reportSocialPost: {
         parameters: {
             query?: never;
             header?: never;
@@ -3921,7 +3935,7 @@ export interface operations {
             };
         };
     };
-    SocialWallService_getTODO2_0_socialTags_list: {
+    SocialWallService_getSocialTagList: {
         parameters: {
             query?: never;
             header?: never;
@@ -3941,7 +3955,7 @@ export interface operations {
             };
         };
     };
-    SocialWallService_getTODO2_0_socialtags: {
+    SocialWallService_getSocialTags: {
         parameters: {
             query?: never;
             header?: never;
@@ -3961,7 +3975,7 @@ export interface operations {
             };
         };
     };
-    TeamService_getTODO2_0_teams: {
+    TeamService_getTeams: {
         parameters: {
             query?: never;
             header?: never;
@@ -3981,7 +3995,7 @@ export interface operations {
             };
         };
     };
-    TeamService_postTODO2_0_teams: {
+    TeamService_createTeam: {
         parameters: {
             query?: never;
             header?: never;
@@ -4003,7 +4017,7 @@ export interface operations {
             };
         };
     };
-    TeamService_postTODO2_0_teams_search: {
+    TeamService_searchTeams: {
         parameters: {
             query?: never;
             header?: never;
@@ -4027,7 +4041,7 @@ export interface operations {
             };
         };
     };
-    TeamService_getTODO2_0_teams__id_: {
+    TeamService_getTeam: {
         parameters: {
             query?: never;
             header?: never;
@@ -4049,7 +4063,7 @@ export interface operations {
             };
         };
     };
-    TeamService_postTODO2_0_teams__id__join: {
+    TeamService_joinTeam: {
         parameters: {
             query?: never;
             header?: never;
@@ -4073,7 +4087,7 @@ export interface operations {
             };
         };
     };
-    UserService_getTODO2_0_users: {
+    UserService_getUsers: {
         parameters: {
             query?: never;
             header?: never;
@@ -4093,7 +4107,7 @@ export interface operations {
             };
         };
     };
-    UserService_postTODO2_0_users_search: {
+    UserService_searchUsers: {
         parameters: {
             query?: never;
             header?: never;
@@ -4117,7 +4131,7 @@ export interface operations {
             };
         };
     };
-    AuthService_postTODO2_0_users_validate_account_code: {
+    AuthService_validateAccountCode: {
         parameters: {
             query?: never;
             header?: never;
@@ -4139,7 +4153,7 @@ export interface operations {
             };
         };
     };
-    AuthService_postTODO2_0_users_validate_account_send_email: {
+    AuthService_sendAccountValidationEmail: {
         parameters: {
             query?: never;
             header?: never;
@@ -4159,7 +4173,7 @@ export interface operations {
             };
         };
     };
-    UserService_getTODO2_0_users__id_: {
+    UserService_getUser: {
         parameters: {
             query?: never;
             header?: never;
@@ -4181,7 +4195,7 @@ export interface operations {
             };
         };
     };
-    UserService_postTODO2_0_users__id__block: {
+    UserService_blockUser: {
         parameters: {
             query?: never;
             header?: never;
@@ -4201,7 +4215,7 @@ export interface operations {
             };
         };
     };
-    UserService_postTODO2_0_users__id__boost: {
+    UserService_boostUser: {
         parameters: {
             query?: never;
             header?: never;
@@ -4221,7 +4235,7 @@ export interface operations {
             };
         };
     };
-    UserService_getTODO2_0_users__id__statistics: {
+    UserService_getUserStatistics: {
         parameters: {
             query?: never;
             header?: never;
@@ -4243,7 +4257,7 @@ export interface operations {
             };
         };
     };
-    UserService_postTODO2_0_users__id__unblock: {
+    UserService_unblockUser: {
         parameters: {
             query?: never;
             header?: never;
@@ -4263,7 +4277,7 @@ export interface operations {
             };
         };
     };
-    ActivityService_getTODO3_0_activities: {
+    ActivityService_getActivities: {
         parameters: {
             query?: never;
             header?: never;
@@ -4283,7 +4297,7 @@ export interface operations {
             };
         };
     };
-    SportService_getTODO3_0_activity_groups_gps: {
+    SportService_getGpsActivityGroups: {
         parameters: {
             query?: never;
             header?: never;
@@ -4303,7 +4317,7 @@ export interface operations {
             };
         };
     };
-    SportService_getTODO3_0_activity_groups_mobility_reasons: {
+    SportService_getMobilityReasons: {
         parameters: {
             query?: never;
             header?: never;
@@ -4323,7 +4337,7 @@ export interface operations {
             };
         };
     };
-    AuthService_postTODO3_0_auth_login: {
+    AuthService_login: {
         parameters: {
             query?: never;
             header?: never;
@@ -4347,7 +4361,7 @@ export interface operations {
             };
         };
     };
-    AuthService_postTODO3_0_auth_refresh_token: {
+    AuthService_refreshToken: {
         parameters: {
             query?: never;
             header: {
@@ -4370,7 +4384,7 @@ export interface operations {
             };
         };
     };
-    AuthService_postTODO3_0_auth_register: {
+    AuthService_register: {
         parameters: {
             query?: never;
             header?: never;
@@ -4394,7 +4408,7 @@ export interface operations {
             };
         };
     };
-    HomeService_getTODO3_0_badges: {
+    HomeService_getBadges: {
         parameters: {
             query: {
                 social: string;
@@ -4416,7 +4430,7 @@ export interface operations {
             };
         };
     };
-    SocialWallService_getTODO3_0_blogs_posts_SocialWallService_getTODO3_0_blogs_posts_noparams: {
+    SocialWallService_getBlogPosts_SocialWallService_getBlogPostsNoParams: {
         parameters: {
             query?: {
                 sincePostId?: string;
@@ -4438,7 +4452,7 @@ export interface operations {
             };
         };
     };
-    HomeService_getTODO3_0_boosts_received: {
+    HomeService_getReceivedBoosts: {
         parameters: {
             query?: never;
             header?: never;
@@ -4458,7 +4472,7 @@ export interface operations {
             };
         };
     };
-    MainService_getTODO3_0_bottom_nav_MainService_getTODO3_0_bottom_nav_noparams: {
+    MainService_getBottomNav_MainService_getBottomNavNoParams: {
         parameters: {
             query?: {
                 socialWallSinceDate?: string;
@@ -4481,7 +4495,7 @@ export interface operations {
             };
         };
     };
-    ChallengeService_getTODO3_0_global_missions_active: {
+    ChallengeService_getActiveGlobalMissions: {
         parameters: {
             query?: never;
             header?: never;
@@ -4501,7 +4515,7 @@ export interface operations {
             };
         };
     };
-    ChallengeService_getTODO3_0_global_missions_over: {
+    ChallengeService_getOverGlobalMissions: {
         parameters: {
             query?: never;
             header?: never;
@@ -4521,7 +4535,7 @@ export interface operations {
             };
         };
     };
-    HomeService_getTODO3_0_missions_activities_ongoing: {
+    HomeService_getOngoingMissions: {
         parameters: {
             query?: never;
             header?: never;
@@ -4541,7 +4555,7 @@ export interface operations {
             };
         };
     };
-    HomeService_getTODO3_0_missions_activities_over: {
+    HomeService_getOverMissions: {
         parameters: {
             query?: never;
             header?: never;
@@ -4561,7 +4575,7 @@ export interface operations {
             };
         };
     };
-    HomeService_getTODO3_0_missions_activities_upcoming: {
+    HomeService_getUpcomingMissions: {
         parameters: {
             query?: never;
             header?: never;
@@ -4581,7 +4595,7 @@ export interface operations {
             };
         };
     };
-    ActivityService_getTODO3_0_my_activities__activityID___id_: {
+    ActivityService_getActivityGpsDetails: {
         parameters: {
             query?: never;
             header?: never;
@@ -4604,7 +4618,7 @@ export interface operations {
             };
         };
     };
-    ActivityService_patchTODO3_0_my_activities__activityID___id_: {
+    ActivityService_updateActivityGpsDetails: {
         parameters: {
             query?: never;
             header?: never;
@@ -4629,7 +4643,7 @@ export interface operations {
             };
         };
     };
-    ChallengeService_getTODO3_0_my_challenge: {
+    ChallengeService_getMyChallenge: {
         parameters: {
             query?: never;
             header?: never;
@@ -4649,7 +4663,7 @@ export interface operations {
             };
         };
     };
-    HomeService_getTODO3_0_my_home: {
+    HomeService_getMyHome: {
         parameters: {
             query?: never;
             header?: never;
@@ -4669,7 +4683,7 @@ export interface operations {
             };
         };
     };
-    AuthService_getTODO3_0_onboarding_discover: {
+    AuthService_getOnboardingDiscover: {
         parameters: {
             query?: never;
             header?: never;
@@ -4689,7 +4703,7 @@ export interface operations {
             };
         };
     };
-    ActivityService_getTODO3_0_quizzes_answered: {
+    ActivityService_getAnsweredQuizzes: {
         parameters: {
             query?: never;
             header?: never;
@@ -4709,7 +4723,7 @@ export interface operations {
             };
         };
     };
-    ActivityService_getTODO3_0_quizzes_un_answered: {
+    ActivityService_getUnansweredQuizzes: {
         parameters: {
             query?: never;
             header?: never;
@@ -4729,7 +4743,7 @@ export interface operations {
             };
         };
     };
-    RankingService_getTODO3_0_ranking__type___seasonId_: {
+    RankingService_getRanking: {
         parameters: {
             query?: never;
             header?: never;
@@ -4752,7 +4766,7 @@ export interface operations {
             };
         };
     };
-    RankingService_getTODO3_0_ranking__type___seasonId__elements: {
+    RankingService_getRankingElements: {
         parameters: {
             query: {
                 direction: string;
@@ -4778,7 +4792,7 @@ export interface operations {
             };
         };
     };
-    RankingService_getTODO3_0_ranking__type___seasonId__elements_me: {
+    RankingService_getMyRankingElement: {
         parameters: {
             query?: never;
             header?: never;
@@ -4796,12 +4810,12 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["RankingElementRemoteEntity"][];
+                    "application/json": components["schemas"]["RankingElementRemoteEntity"];
                 };
             };
         };
     };
-    RankingService_getTODO3_0_ranking__type___seasonId__elements_search: {
+    RankingService_searchRankingElements: {
         parameters: {
             query: {
                 name: string;
@@ -4828,7 +4842,7 @@ export interface operations {
             };
         };
     };
-    EnvironmentService_getTODO3_0_settings: {
+    EnvironmentService_getSettings: {
         parameters: {
             query?: {
                 id?: string;
@@ -4852,7 +4866,7 @@ export interface operations {
             };
         };
     };
-    SocialWallService_postTODO3_0_social_posts_SocialWallService_postTODO3_0_social_posts_2params_SocialWallService_postTODO3_0_social_posts_3Params_SocialWallService_postTODO3_0_social_posts_messagebody_SocialWallService_postTODO3_0_social_posts_onepart: {
+    SocialWallService_createSocialPostWithMedia_SocialWallService_createSocialPostWith2Params_SocialWallService_createSocialPostWith3Params_SocialWallService_createSocialPostWithMessage_SocialWallService_createSocialPostWithOnePart: {
         parameters: {
             query?: never;
             header?: never;
@@ -4887,7 +4901,7 @@ export interface operations {
             };
         };
     };
-    SocialWallService_getTODO3_0_social_posts__post_id_: {
+    SocialWallService_getSocialPost: {
         parameters: {
             query?: never;
             header?: never;
@@ -4909,7 +4923,7 @@ export interface operations {
             };
         };
     };
-    SocialWallService_postSocialPostById: {
+    SocialWallService_createSocialPostById: {
         parameters: {
             query?: never;
             header?: never;
@@ -4935,7 +4949,7 @@ export interface operations {
             };
         };
     };
-    SocialWallService_deleteTODO3_0_social_posts__post_id_: {
+    SocialWallService_deleteSocialPost: {
         parameters: {
             query?: never;
             header?: never;
@@ -4955,7 +4969,7 @@ export interface operations {
             };
         };
     };
-    SocialWallService_patchTODO3_0_social_posts__post_id_: {
+    SocialWallService_updateSocialPost: {
         parameters: {
             query?: never;
             header?: never;
@@ -4979,7 +4993,7 @@ export interface operations {
             };
         };
     };
-    SocialWallService_deleteTODO3_0_social_posts__post_id__comments__comment_id_: {
+    SocialWallService_deleteSocialPostComment: {
         parameters: {
             query?: never;
             header?: never;
@@ -5002,7 +5016,7 @@ export interface operations {
             };
         };
     };
-    SocialWallService_put3_0_social_posts__post_id__comments__comment_id__like: {
+    SocialWallService_likeSocialPostComment: {
         parameters: {
             query?: never;
             header?: never;
@@ -5025,7 +5039,7 @@ export interface operations {
             };
         };
     };
-    SocialWallService_deleteTODO3_0_social_posts__post_id__comments__comment_id__like: {
+    SocialWallService_deleteSocialPostCommentLike: {
         parameters: {
             query?: never;
             header?: never;
@@ -5048,7 +5062,7 @@ export interface operations {
             };
         };
     };
-    SocialWallService_putTODO3_0_social_posts__post_id__like: {
+    SocialWallService_likeSocialPost: {
         parameters: {
             query?: never;
             header?: never;
@@ -5070,7 +5084,7 @@ export interface operations {
             };
         };
     };
-    SocialWallService_deleteTODO3_0_social_posts__post_id__like: {
+    SocialWallService_unlikeSocialPost: {
         parameters: {
             query?: never;
             header?: never;
@@ -5092,7 +5106,7 @@ export interface operations {
             };
         };
     };
-    SocialWallService_postTODO3_0_social_posts__post_id__moderate__actionId_: {
+    SocialWallService_moderateSocialPost: {
         parameters: {
             query?: never;
             header?: never;
@@ -5113,7 +5127,7 @@ export interface operations {
             };
         };
     };
-    HomeService_getTODO3_0_survey__id_: {
+    HomeService_getSurvey: {
         parameters: {
             query?: never;
             header?: never;
@@ -5135,7 +5149,7 @@ export interface operations {
             };
         };
     };
-    HomeService_postTODO3_0_survey__id__answer: {
+    HomeService_answerSurvey: {
         parameters: {
             query?: never;
             header?: never;
@@ -5159,7 +5173,7 @@ export interface operations {
             };
         };
     };
-    TeamService_getTODO3_0_team_detail__id_: {
+    TeamService_getTeamDetails: {
         parameters: {
             query?: never;
             header?: never;
@@ -5181,7 +5195,7 @@ export interface operations {
             };
         };
     };
-    TeamService_getTODO3_0_teams_management: {
+    TeamService_getTeamManagement: {
         parameters: {
             query?: never;
             header?: never;
@@ -5201,7 +5215,7 @@ export interface operations {
             };
         };
     };
-    TutorialsService_getTODO3_0_tutorials__helpId_: {
+    TutorialsService_getTutorials: {
         parameters: {
             query?: never;
             header?: never;
@@ -5223,7 +5237,7 @@ export interface operations {
             };
         };
     };
-    ActivityService_getTODO3_0_user_activity_groups: {
+    ActivityService_getUserActivityGroups: {
         parameters: {
             query?: never;
             header?: never;
@@ -5243,7 +5257,7 @@ export interface operations {
             };
         };
     };
-    SportService_postTODO3_0_user_activity_groups_start: {
+    SportService_startSportSession: {
         parameters: {
             query?: never;
             header?: never;
@@ -5263,7 +5277,7 @@ export interface operations {
             };
         };
     };
-    ActivityService_patchTODO3_0_user_activity_groups__userActivityGroupId__SportService_patchTODO3_0_user_activity_groups__userActivityGroupId_: {
+    ActivityService_updateUserActivityGroup_SportService_updateUserActivityGroupMobilityReason: {
         parameters: {
             query?: never;
             header?: never;
@@ -5287,7 +5301,7 @@ export interface operations {
             };
         };
     };
-    SportService_postTODO3_0_user_activity_groups__userActivityGroupId__end: {
+    SportService_endUserActivityGroup: {
         parameters: {
             query?: never;
             header?: never;
@@ -5307,7 +5321,7 @@ export interface operations {
             };
         };
     };
-    SportService_postTODO3_0_user_activity_groups__userActivityGroupId__ping: {
+    SportService_pingUserActivityGroup: {
         parameters: {
             query?: never;
             header?: never;
@@ -5327,7 +5341,7 @@ export interface operations {
             };
         };
     };
-    ActivityService_getTODO3_0_user_activity_groups__userActivityGroupId__segments: {
+    ActivityService_getUserActivityGroupSegments: {
         parameters: {
             query?: never;
             header?: never;
@@ -5349,7 +5363,7 @@ export interface operations {
             };
         };
     };
-    SportService_postTODO3_0_user_activity_groups__userActivityGroupId__segments: {
+    SportService_addSportSegments: {
         parameters: {
             query?: never;
             header?: never;
@@ -5373,7 +5387,7 @@ export interface operations {
             };
         };
     };
-    UserService_getTODO3_0_user_classifications: {
+    UserService_getUserClassifications: {
         parameters: {
             query?: never;
             header?: never;
@@ -5393,7 +5407,7 @@ export interface operations {
             };
         };
     };
-    UserService_postTODO3_0_user_classifications: {
+    UserService_setUserClassifications: {
         parameters: {
             query?: never;
             header?: never;
@@ -5415,7 +5429,7 @@ export interface operations {
             };
         };
     };
-    UserService_getTODO3_0_user_profile__userId_: {
+    UserService_getUserProfile: {
         parameters: {
             query?: never;
             header?: never;
@@ -5437,7 +5451,7 @@ export interface operations {
             };
         };
     };
-    UserService_getTODO3_0_user_status: {
+    UserService_getUserStatus: {
         parameters: {
             query?: never;
             header?: never;
@@ -5457,7 +5471,7 @@ export interface operations {
             };
         };
     };
-    UserService_getTODO3_0_users_blocked_users: {
+    UserService_getBlockedUsers: {
         parameters: {
             query?: never;
             header?: never;
@@ -5477,7 +5491,7 @@ export interface operations {
             };
         };
     };
-    UserService_getTODO3_0_users_me_accept_legals_consent: {
+    UserService_getAcceptedLegalConsents: {
         parameters: {
             query?: never;
             header?: never;
@@ -5497,7 +5511,7 @@ export interface operations {
             };
         };
     };
-    UserService_postTODO3_0_users_me_accept_legals_consent: {
+    UserService_acceptLegalConsent: {
         parameters: {
             query?: never;
             header?: never;
@@ -5519,7 +5533,7 @@ export interface operations {
             };
         };
     };
-    CO2Service_getTODO4_0_co2_summary: {
+    CO2Service_getCo2Summary: {
         parameters: {
             query?: never;
             header?: never;
@@ -5539,7 +5553,7 @@ export interface operations {
             };
         };
     };
-    HomeService_getTODO4_0_histories_activity_gps_last_activity_command: {
+    HomeService_getLastActivityCommand: {
         parameters: {
             query: {
                 sinceDate: string;
@@ -5561,7 +5575,7 @@ export interface operations {
             };
         };
     };
-    ActivityService_getTODO4_0_histories_activity_gps__id_: {
+    ActivityService_getActivityGpsSummary: {
         parameters: {
             query?: never;
             header?: never;
@@ -5583,7 +5597,7 @@ export interface operations {
             };
         };
     };
-    ActivityService_getTODO4_0_histories_gps: {
+    ActivityService_getGpsHistories: {
         parameters: {
             query: {
                 "filter-by": string;
@@ -5606,7 +5620,7 @@ export interface operations {
             };
         };
     };
-    ActivityService_getTODO4_0_histories__type___seasonId_: {
+    ActivityService_getHistories: {
         parameters: {
             query?: {
                 date?: string;
@@ -5634,7 +5648,7 @@ export interface operations {
             };
         };
     };
-    HomeService_getTODO4_0_home: {
+    HomeService_getHome: {
         parameters: {
             query?: never;
             header?: never;
@@ -5654,7 +5668,7 @@ export interface operations {
             };
         };
     };
-    SocialWallService_getTODO4_0_social_posts: {
+    SocialWallService_getSocialPosts: {
         parameters: {
             query: {
                 date: string;
@@ -5677,7 +5691,7 @@ export interface operations {
             };
         };
     };
-    SportService_getTODO4_0_steps_updated_at: {
+    SportService_getStepsUpdatedAt: {
         parameters: {
             query?: never;
             header?: never;
@@ -5697,7 +5711,7 @@ export interface operations {
             };
         };
     };
-    WeatherService_getTODO4_0_weather: {
+    WeatherService_getWeatherForecast: {
         parameters: {
             query: {
                 lat: number;
