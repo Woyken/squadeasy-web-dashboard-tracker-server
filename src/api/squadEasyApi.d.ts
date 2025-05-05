@@ -2116,12 +2116,6 @@ export interface components {
             code?: string;
             email?: string;
         };
-        FitbitAuthRemoteEntity: {
-            access_token: string;
-            refresh_token: string;
-            /** Format: int32 */
-            expires_in: number;
-        };
         ForgotPasswordRemoteEntity: {
             email: string;
         };

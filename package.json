@@ -5,7 +5,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "generate-client": "openapi-typescript https://woyken.github.io/squadeasy-api/openapi.yaml -o ./src/api/squadEasyApi.d.ts",
+    "generate-client": "openapi-typescript https://woyken.github.io/squadeasy-api/openapi.SquadEasyApi.yaml -o ./src/api/squadEasyApi.d.ts",
+    "generate-ms-client": "openapi-typescript https://woyken.github.io/squadeasy-api/openapi.SquadEasyMSApi.yaml -o ./src/api/squadEasyMsApi.d.ts",
     "prod": "node --experimental-strip-types ./src/app.ts",
     "dev": "dotenvx run -f .env.local -f .env -- \"node --experimental-strip-types ./src/app.ts\"",
     "dev:watch": "nodemon --watch src --ext ts --exec \"dotenvx run -f .env.local -f .env -- \"node --experimental-strip-types ./src/app.ts\"\"",
