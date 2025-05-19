@@ -4763,13 +4763,13 @@ export interface operations {
     RankingService_getRankingElements: {
         parameters: {
             query: {
-                direction: string;
+                direction: "top" | "bottom";
                 offsetId: string;
             };
             header?: never;
             path: {
-                type: string;
-                seasonId: string;
+                type: "season";
+                seasonId: "current" | string;
             };
             cookie?: never;
         };
@@ -4791,8 +4791,8 @@ export interface operations {
             query?: never;
             header?: never;
             path: {
-                type: string;
-                seasonId: string;
+                type: "season";
+                seasonId: "current" | string;
             };
             cookie?: never;
         };
@@ -4818,8 +4818,8 @@ export interface operations {
             };
             header?: never;
             path: {
-                type: string;
-                seasonId: string;
+                type: "season";
+                seasonId: "current" | string;
             };
             cookie?: never;
         };
