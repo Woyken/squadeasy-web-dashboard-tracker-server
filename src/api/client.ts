@@ -65,8 +65,8 @@ export async function querySeasonRanking(accessToken: string) {
     {
       params: {
         path: {
-          seasonId: "a",
-          type: "a",
+          type: "season",
+          seasonId: "current",
         },
       },
       headers: {
