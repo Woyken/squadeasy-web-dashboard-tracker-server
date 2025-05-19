@@ -79,6 +79,33 @@ export async function querySeasonRanking(accessToken: string) {
   return result.data;
 }
 
+export async function querySeasonRankingContinuation(
+  accessToken: string,
+  offsetId: string
+) {
+  const result = await squadEasyClient.GET(
+    "/api/3.0/ranking/{type}/{seasonId}/elements",
+    {
+      params: {
+        path: {
+          type: "season",
+          seasonId: "current",
+        },
+        query: {
+          direction: "bottom",
+          offsetId: offsetId,
+        },
+      },
+      headers: {
+        authorization: `Bearer ${accessToken}`,
+      },
+    }
+  );
+  if (!result.data)
+    throw new Error(`Get teams failed ${JSON.stringify(result.error)}`);
+  return result.data;
+}
+
 export async function queryTeamById(accessToken: string, teamId: string) {
   const result = await squadEasyClient.GET("/api/2.0/teams/{id}", {
     params: {

@@ -2,6 +2,7 @@ import { getAccessToken } from "./api/accessToken.ts";
 import {
   queryMyChallenge,
   querySeasonRanking,
+  querySeasonRankingContinuation,
   queryTeamById,
   queryUserStatisticsQuery,
 } from "./api/client.ts";
@@ -110,6 +111,38 @@ async function handleFetchTeamsUsersPoints(
   await storeUsersPoints(now, onlyChangedUsersScores);
 }
 
+async function* getAllTeamElements() {
+  const accessToken = await getAccessToken();
+
+  console.log("[Teams] Fetching initial teams");
+  const teamsDataResponse = await querySeasonRanking(accessToken);
+  console.log(
+    "[Teams] Found initial teams",
+    teamsDataResponse.elements?.length
+  );
+  let lastTeamId = teamsDataResponse.elements?.at(-1)?.id;
+
+  yield* teamsDataResponse.elements ?? [];
+
+  while (lastTeamId) {
+    const accessToken = await getAccessToken();
+    console.log("[Teams] Fetching continue", "offset:", lastTeamId);
+    const teamsDataResponse = await querySeasonRankingContinuation(
+      accessToken,
+      lastTeamId
+    );
+    console.log(
+      "[Teams] Found more teams",
+      teamsDataResponse.length,
+      "offset:",
+      lastTeamId
+    );
+    lastTeamId = teamsDataResponse.at(-1)?.id;
+
+    yield* teamsDataResponse;
+  }
+}
+
 async function handleScheduledTeamsFetch() {
   console.log(`\n--- ${new Date().toISOString()} ---`);
   console.log("Running scheduled task: Fetch and Store Team Data");
@@ -121,18 +154,25 @@ async function handleScheduledTeamsFetch() {
   }
   const lastTeamsPoints = await getLatestPointsForTeams();
   const now = Date.now();
-  const teamsDataResponse = await querySeasonRanking(accessToken);
 
-  const onlyChangedTeamsScores = teamsDataResponse.elements?.filter(
-    (newTeam) => {
-      const lastTeamScore = lastTeamsPoints.find(
-        (x) => x.team_id === newTeam.id
-      )?.points;
+  const teamsElementsStream = getAllTeamElements();
 
-      if (newTeam.points !== lastTeamScore) return true;
-      return false;
-    }
-  );
+  let teamsElements: Awaited<
+    ReturnType<typeof querySeasonRankingContinuation>
+  > = [];
+
+  for await (const team of teamsElementsStream) {
+    teamsElements.push(team);
+  }
+
+  const onlyChangedTeamsScores = teamsElements?.filter((newTeam) => {
+    const lastTeamScore = lastTeamsPoints.find(
+      (x) => x.team_id === newTeam.id
+    )?.points;
+
+    if (newTeam.points !== lastTeamScore) return true;
+    return false;
+  });
 
   if (!onlyChangedTeamsScores || onlyChangedTeamsScores.length === 0) {
     console.log("no teams scores changed");
