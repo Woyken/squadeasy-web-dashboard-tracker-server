@@ -35,7 +35,7 @@ services:
   squadeasy-postgres-db:
     image: timescale/timescaledb-ha:pg17
     restart: unless-stopped
-    user: 1000:1000
+    user: 0:0
     volumes:
       - ./squadeasy-postgres-db-data:/home/postgres/pgdata/data
     environment:
