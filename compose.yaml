@@ -18,8 +18,8 @@ services:
       - PASSWORD=${SQUADEASY_PASSWORD}
       - DB_HOST=squadeasy-postgres-db
       - DB_DATABASE=squadeasytrackerdb
-      - DB_USER=${POSTGRES_USER}
-      - DB_PASSWORD=${POSTGRES_PASSWORD}
+      - DB_USER=postgres
+      - DB_PASSWORD=postgres
       - DB_PORT=5432
     ports:
       - 3312:3000
@@ -40,12 +40,12 @@ services:
       - ./squadeasy-postgres-db-data:/home/postgres/pgdata/data
     environment:
       - POSTGRES_DB=squadeasytrackerdb
-      - POSTGRES_USER=${POSTGRES_USER}
-      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
     expose:
       - 5432
     healthcheck:
-      test: ["CMD", "pg_isready"]
+      test: ["CMD", "pg_isready", "-U", "postgres"]
       interval: 10s
       timeout: 5s
       retries: 5
