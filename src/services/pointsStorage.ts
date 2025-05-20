@@ -243,14 +243,55 @@ export async function getTeamPointsByRange(start: Date, end: Date) {
   let queryString = "";
   if (timeBucket) {
     queryString = `
-      SELECT time_bucket('${timeBucket}', "time") AS "time", team_id, LAST(points, "time") AS points
-      FROM team_points WHERE "time" >= $1 AND "time" < $2
-      GROUP BY 1, team_id ORDER BY "time" ASC, team_id ASC;`;
+      WITH main_points AS (
+        SELECT time_bucket('${timeBucket}', "time") AS "time", team_id, LAST(points, "time") AS points
+        FROM team_points WHERE "time" >= $1 AND "time" < $2
+        GROUP BY 1, team_id
+      ),
+      before_points AS (
+        SELECT DISTINCT ON (team_id) time AS "time", team_id, points
+        FROM team_points
+        WHERE "time" <= $1
+        ORDER BY team_id, "time" DESC
+      ),
+      after_points AS (
+        SELECT DISTINCT ON (team_id) time AS "time", team_id, points
+        FROM team_points
+        WHERE "time" >= $2
+        ORDER BY team_id, "time" ASC
+      )
+      SELECT * FROM before_points
+      UNION ALL
+      SELECT * FROM main_points
+      UNION ALL
+      SELECT * FROM after_points
+      ORDER BY "time" ASC, team_id ASC;
+    `;
   } else {
     queryString = `
-      SELECT time, team_id, points FROM team_points
-      WHERE "time" >= $1 AND "time" < $2
-      ORDER BY "time" ASC, team_id ASC;`;
+      WITH main_points AS (
+        SELECT time, team_id, points FROM team_points
+        WHERE "time" >= $1 AND "time" < $2
+      ),
+      before_points AS (
+        SELECT DISTINCT ON (team_id) time AS "time", team_id, points
+        FROM team_points
+        WHERE "time" <= $1
+        ORDER BY team_id, "time" DESC
+      ),
+      after_points AS (
+        SELECT DISTINCT ON (team_id) time AS "time", team_id, points
+        FROM team_points
+        WHERE "time" >= $2
+        ORDER BY team_id, "time" ASC
+      )
+      SELECT * FROM before_points
+      UNION ALL
+      SELECT * FROM main_points
+      UNION ALL
+      SELECT * FROM after_points
+      ORDER BY "time" ASC, team_id ASC;
+    `;
   }
 
   console.info(
@@ -258,7 +299,6 @@ export async function getTeamPointsByRange(start: Date, end: Date) {
     [start.toISOString(), end.toISOString()]
   );
 
-  // Execute query using the pool
   const result: QueryResult<{ time: Date; team_id: string; points: number }> =
     await pool.query(queryString, [start.toISOString(), end.toISOString()]);
 
@@ -288,14 +328,55 @@ export async function getUsersPointsByRange(
   let queryString = "";
   if (timeBucket) {
     queryString = `
-          SELECT time_bucket('${timeBucket}', "time") AS "time", user_id, LAST(points, "time") AS points
-          FROM user_points WHERE user_id = $3 AND "time" >= $1 AND "time" < $2
-          GROUP BY 1, user_id ORDER BY "time" ASC, user_id ASC;`;
+      WITH main_points AS (
+        SELECT time_bucket('${timeBucket}', "time") AS "time", user_id, LAST(points, "time") AS points
+        FROM user_points WHERE user_id = $3 AND "time" >= $1 AND "time" < $2
+        GROUP BY 1, user_id
+      ),
+      before_points AS (
+        SELECT DISTINCT ON (user_id) time AS "time", user_id, points
+        FROM user_points
+        WHERE user_id = $3 AND "time" <= $1
+        ORDER BY user_id, "time" DESC
+      ),
+      after_points AS (
+        SELECT DISTINCT ON (user_id) time AS "time", user_id, points
+        FROM user_points
+        WHERE user_id = $3 AND "time" >= $2
+        ORDER BY user_id, "time" ASC
+      )
+      SELECT * FROM before_points
+      UNION ALL
+      SELECT * FROM main_points
+      UNION ALL
+      SELECT * FROM after_points
+      ORDER BY "time" ASC, user_id ASC;
+    `;
   } else {
     queryString = `
-      SELECT time, user_id, points FROM user_points
-      WHERE user_id = $3 AND "time" >= $1 AND "time" < $2
-      ORDER BY "time" ASC, user_id ASC;`;
+      WITH main_points AS (
+        SELECT time, user_id, points FROM user_points
+        WHERE user_id = $3 AND "time" >= $1 AND "time" < $2
+      ),
+      before_points AS (
+        SELECT DISTINCT ON (user_id) time AS "time", user_id, points
+        FROM user_points
+        WHERE user_id = $3 AND "time" <= $1
+        ORDER BY user_id, "time" DESC
+      ),
+      after_points AS (
+        SELECT DISTINCT ON (user_id) time AS "time", user_id, points
+        FROM user_points
+        WHERE user_id = $3 AND "time" >= $2
+        ORDER BY user_id, "time" ASC
+      )
+      SELECT * FROM before_points
+      UNION ALL
+      SELECT * FROM main_points
+      UNION ALL
+      SELECT * FROM after_points
+      ORDER BY "time" ASC, user_id ASC;
+    `;
   }
 
   console.info(
@@ -303,7 +384,6 @@ export async function getUsersPointsByRange(
     [start.toISOString(), end.toISOString(), userId]
   );
 
-  // Execute query using the pool
   const result: QueryResult<{ time: Date; user_id: string; points: number }> =
     await pool.query(queryString, [
       start.toISOString(),
@@ -337,14 +417,55 @@ export async function getUsersActivityPointsByRange(
   let queryString = "";
   if (timeBucket) {
     queryString = `
-      SELECT time_bucket('${timeBucket}', "time") AS "time", user_id, activity_id, LAST(value, "time") AS value, LAST(points, "time") AS points
-      FROM user_activity_points WHERE user_id = $3 AND "time" >= $1 AND "time" < $2
-      GROUP BY 1, user_id, activity_id ORDER BY "time" ASC, user_id ASC;`;
+      WITH main_points AS (
+        SELECT time_bucket('${timeBucket}', "time") AS "time", user_id, activity_id, LAST(value, "time") AS value, LAST(points, "time") AS points
+        FROM user_activity_points WHERE user_id = $3 AND "time" >= $1 AND "time" < $2
+        GROUP BY 1, user_id, activity_id
+      ),
+      before_points AS (
+        SELECT DISTINCT ON (user_id, activity_id) time AS "time", user_id, activity_id, value, points
+        FROM user_activity_points
+        WHERE user_id = $3 AND "time" <= $1
+        ORDER BY user_id, activity_id, "time" DESC
+      ),
+      after_points AS (
+        SELECT DISTINCT ON (user_id, activity_id) time AS "time", user_id, activity_id, value, points
+        FROM user_activity_points
+        WHERE user_id = $3 AND "time" >= $2
+        ORDER BY user_id, activity_id, "time" ASC
+      )
+      SELECT * FROM before_points
+      UNION ALL
+      SELECT * FROM main_points
+      UNION ALL
+      SELECT * FROM after_points
+      ORDER BY "time" ASC, user_id ASC, activity_id ASC;
+    `;
   } else {
     queryString = `
-      SELECT time, user_id, activity_id, value, points FROM user_activity_points
-      WHERE user_id = $3 AND "time" >= $1 AND "time" < $2
-      ORDER BY "time" ASC, user_id ASC;`;
+      WITH main_points AS (
+        SELECT time, user_id, activity_id, value, points FROM user_activity_points
+        WHERE user_id = $3 AND "time" >= $1 AND "time" < $2
+      ),
+      before_points AS (
+        SELECT DISTINCT ON (user_id, activity_id) time AS "time", user_id, activity_id, value, points
+        FROM user_activity_points
+        WHERE user_id = $3 AND "time" <= $1
+        ORDER BY user_id, activity_id, "time" DESC
+      ),
+      after_points AS (
+        SELECT DISTINCT ON (user_id, activity_id) time AS "time", user_id, activity_id, value, points
+        FROM user_activity_points
+        WHERE user_id = $3 AND "time" >= $2
+        ORDER BY user_id, activity_id, "time" ASC
+      )
+      SELECT * FROM before_points
+      UNION ALL
+      SELECT * FROM main_points
+      UNION ALL
+      SELECT * FROM after_points
+      ORDER BY "time" ASC, user_id ASC, activity_id ASC;
+    `;
   }
 
   console.info(
@@ -352,7 +473,6 @@ export async function getUsersActivityPointsByRange(
     [start.toISOString(), end.toISOString(), userId]
   );
 
-  // Execute query using the pool
   const result: QueryResult<{
     time: Date;
     user_id: string;
