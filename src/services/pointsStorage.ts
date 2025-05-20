@@ -4,12 +4,14 @@ import { pool } from "../database.ts";
 export async function getLatestPointsForUserActivities(userIds: string[]) {
   const queryString = `
   select time, user_id, activity_id, value, points
-  from user_activity_points tp
-  where tp.time = (
-    select max(tp1.time)
-    from user_activity_points tp1
-    where tp1.user_id = tp.user_id
-  ) and tp.user_id in ($1)`;
+  from user_activity_points up
+  where up.time = (
+      select max(up1.time)
+      from user_activity_points up1
+      where up1.user_id = up.user_id
+      and up1.activity_id = up.activity_id
+      )
+    and up.user_id = any($1)`;
   const result: QueryResult<{
     time: string;
     user_id: string;
@@ -23,12 +25,13 @@ export async function getLatestPointsForUserActivities(userIds: string[]) {
 export async function getLatestPointsForUsers(userIds: string[]) {
   const queryString = `
   select time, user_id, points
-  from user_points tp
-  where tp.time = (
-    select max(tp1.time)
-    from user_points tp1
-    where tp1.user_id = tp.user_id
-  ) and tp.user_id in ($1)`;
+  from user_points up
+  where up.time = (
+      select max(up1.time)
+      from user_points up1
+      where up1.user_id = up.user_id
+      )
+    and up.user_id = any($1)`;
   const result: QueryResult<{ time: Date; user_id: string; points: number }> =
     await pool.query(queryString, [[...userIds]]);
   return result.rows;
