@@ -38,6 +38,56 @@ const teamPointsQuerySchema: FastifySchema = {
   },
 };
 
+const activityPointsQuerySchema: FastifySchema = {
+  headers: {
+    type: "object",
+    required: ["authorization"],
+    properties: {
+      authorization: { type: "string" },
+    },
+  },
+  params: {
+    type: "object",
+    required: ["userId"],
+    properties: {
+      userId: { type: "string" },
+    },
+  },
+  querystring: {
+    type: "object",
+    required: ["startDate", "endDate"],
+    properties: {
+      startDate: { type: "string", format: "date-time" },
+      endDate: { type: "string", format: "date-time" },
+    },
+  },
+};
+
+const userPointsQuerySchema: FastifySchema = {
+  headers: {
+    type: "object",
+    required: ["authorization"],
+    properties: {
+      authorization: { type: "string" },
+    },
+  },
+  params: {
+    type: "object",
+    required: ["userId"],
+    properties: {
+      userId: { type: "string" },
+    },
+  },
+  querystring: {
+    type: "object",
+    required: ["startDate", "endDate"],
+    properties: {
+      startDate: { type: "string", format: "date-time" },
+      endDate: { type: "string", format: "date-time" },
+    },
+  },
+};
+
 const PORT = parseInt(process.env.PORT || "3000", 10);
 const HOST = process.env.HOST || "0.0.0.0";
 
@@ -71,15 +121,16 @@ interface UserActivityPointsResponse {
   points: number;
 }
 
-fastify.get<{ Querystring: PointsQueryString }>(
-  "/api/user-activity-points",
-  { schema: teamPointsQuerySchema },
+fastify.get<{ Querystring: PointsQueryString; Params: { userId: string } }>(
+  "/api/user-activity-points/:userId",
+  { schema: activityPointsQuerySchema },
   async (request, reply) => {
     if (!(await isValidAccessToken(request.headers.authorization))) {
       await reply.code(401).send({ error: "Unauthorized" });
       return;
     }
 
+    const { userId } = request.params;
     const { startDate: startDateStr, endDate: endDateStr } = request.query;
 
     const start = new Date(startDateStr);
@@ -98,11 +149,10 @@ fastify.get<{ Querystring: PointsQueryString }>(
     }
 
     try {
-      const result = await getUsersActivityPointsByRange(start, end);
+      const result = await getUsersActivityPointsByRange(userId, start, end);
 
       await reply.code(200).send(
         result.map<UserActivityPointsResponse>((x) => ({
-          // TODO maybe group by user id
           userId: x.user_id,
           activityId: x.activity_id,
           time: x.time,
@@ -123,14 +173,15 @@ interface UserPointsResponse {
   points: number;
 }
 
-fastify.get<{ Querystring: PointsQueryString }>(
-  "/api/user-points",
-  { schema: teamPointsQuerySchema },
+fastify.get<{ Querystring: PointsQueryString; Params: { userId: string } }>(
+  "/api/user-points/:userId",
+  { schema: userPointsQuerySchema },
   async (request, reply) => {
     if (!(await isValidAccessToken(request.headers.authorization))) {
       await reply.code(401).send({ error: "Unauthorized" });
       return;
     }
+    const { userId } = request.params;
     const { startDate: startDateStr, endDate: endDateStr } = request.query;
 
     const start = new Date(startDateStr);
@@ -149,11 +200,10 @@ fastify.get<{ Querystring: PointsQueryString }>(
     }
 
     try {
-      const result = await getUsersPointsByRange(start, end);
+      const result = await getUsersPointsByRange(userId, start, end);
 
       await reply.code(200).send(
         result.map<UserPointsResponse>((x) => ({
-          // Todo maybe group by user id
           userId: x.user_id,
           time: x.time,
           points: x.points,
@@ -198,21 +248,8 @@ fastify.get<{ Querystring: PointsQueryString }>(
       return;
     }
 
-    const timeDifferenceHours =
-      (end.getTime() - start.getTime()) / (1000 * 60 * 60);
-    const requiresAggregation = timeDifferenceHours > 24;
-    fastify.log.info(
-      `Query range: ${timeDifferenceHours.toFixed(
-        2
-      )} hours. Requires aggregation: ${requiresAggregation}`
-    );
-
     try {
-      const result = await getTeamPointsByRange(
-        start,
-        end,
-        requiresAggregation
-      );
+      const result = await getTeamPointsByRange(start, end);
 
       await reply.code(200).send(
         result.map<TeamPointsResponse>((x) => ({

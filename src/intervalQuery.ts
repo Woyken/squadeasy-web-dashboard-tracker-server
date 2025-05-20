@@ -24,6 +24,7 @@ async function handleFetchUserActivities(
     queryUserStatisticsQuery(accessToken, userId)
   );
   const lastUsersActivities = await getLatestPointsForUserActivities(userIds);
+  console.log("Last users activities fetched: ", lastUsersActivities.length);
 
   const userActivities = await Promise.all(usersActivitiesPromises);
 
@@ -32,6 +33,8 @@ async function handleFetchUserActivities(
   const userActivitiesFlat = userActivities.flatMap((x) =>
     x.activities?.map((a) => ({ userId: x.id, ...a }))
   );
+
+  console.log("Users have total activities: ", userActivitiesFlat.length);
 
   const onlyChangedUserActivities = userActivitiesFlat
     .filter((newActivity) => {
@@ -51,6 +54,8 @@ async function handleFetchUserActivities(
       return false;
     })
     .filter((x) => !!x);
+
+  console.log("Changed users activities: ", onlyChangedUserActivities.length);
 
   await storeUserActivities(now, onlyChangedUserActivities);
 }
@@ -80,9 +85,13 @@ async function handleFetchTeamsUsersPoints(
   const teamsUsersPoints = await Promise.all(teamsUsersQueries);
   const teamsUsersFlat = teamsUsersPoints.flatMap((x) => x);
 
+  console.log("Teams have total users: ", teamsUsersFlat.length);
+
   const lastUsersPoints = await getLatestPointsForUsers(
     teamsUsersFlat.map((x) => x.id)
   );
+  console.log("Last users points fetched: ", lastUsersPoints.length);
+
   const now = Date.now();
 
   const onlyChangedUsersScores = teamsUsersFlat
@@ -103,10 +112,18 @@ async function handleFetchTeamsUsersPoints(
     return;
   }
 
-  handleFetchUserActivities(
-    accessToken,
-    onlyChangedUsersScores.filter((x) => !!x.isActivityPublic).map((x) => x.id)
-  ).catch((e) => console.error("failed to update users activities", e));
+  console.log("changed scores for users: ", onlyChangedUsersScores.length);
+  const usersWithPublicActivities = onlyChangedUsersScores
+    .filter((x) => !!x.isActivityPublic)
+    .map((x) => x.id);
+  console.log(
+    "users with public activities: ",
+    usersWithPublicActivities.length
+  );
+
+  handleFetchUserActivities(accessToken, usersWithPublicActivities).catch((e) =>
+    console.error("failed to update users activities", e)
+  );
 
   await storeUsersPoints(now, onlyChangedUsersScores);
 }
@@ -153,6 +170,8 @@ async function handleScheduledTeamsFetch() {
     return;
   }
   const lastTeamsPoints = await getLatestPointsForTeams();
+
+  console.log("Last teams points fetched: ", lastTeamsPoints.length);
   const now = Date.now();
 
   const teamsElementsStream = getAllTeamElements();
@@ -164,6 +183,8 @@ async function handleScheduledTeamsFetch() {
   for await (const team of teamsElementsStream) {
     teamsElements.push(team);
   }
+
+  console.log("Teams total elements: ", teamsElements.length);
 
   const onlyChangedTeamsScores = teamsElements?.filter((newTeam) => {
     const lastTeamScore = lastTeamsPoints.find(
@@ -178,6 +199,8 @@ async function handleScheduledTeamsFetch() {
     console.log("no teams scores changed");
     return;
   }
+
+  console.log("changed scores for teams: ", onlyChangedTeamsScores.length);
 
   const changedTeamIds = onlyChangedTeamsScores.map((x) => x.id);
   handleFetchTeamsUsersPoints(accessToken, changedTeamIds).catch((e) =>

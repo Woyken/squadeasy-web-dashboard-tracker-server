@@ -224,27 +224,33 @@ export async function testDbConnection(): Promise<void> {
   }
 }
 
-export async function getTeamPointsByRange(
-  start: Date,
-  end: Date,
-  requiresAggregation: boolean
-) {
+export async function getTeamPointsByRange(start: Date, end: Date) {
+  const entriesExpected = 50;
+  const timeDifference = end.getTime() - start.getTime();
+  let timeBucket: string | undefined = undefined;
+  const hoursForExpectedEntries = Math.floor(
+    timeDifference / (1000 * 60 * 60) / entriesExpected
+  );
+  const minutesForExpectedEntries = Math.floor(
+    timeDifference / (1000 * 60) / entriesExpected
+  );
+  if (hoursForExpectedEntries > 0) {
+    timeBucket = `${hoursForExpectedEntries} hours`;
+  } else if (minutesForExpectedEntries >= 10) {
+    timeBucket = `${minutesForExpectedEntries} minutes`;
+  }
+
   let queryString = "";
-  if (requiresAggregation) {
-    // Aggregated Query
-    console.info("Building aggregated query (6-hour buckets)...");
+  if (timeBucket) {
     queryString = `
-          SELECT time_bucket('6 hours', "time") AS "time", team_id, LAST(points, "time") AS points
-          FROM team_points WHERE "time" >= $1 AND "time" < $2
-          GROUP BY 1, team_id ORDER BY "time" ASC, team_id ASC;`; // Use 1 for first SELECT column
+      SELECT time_bucket('${timeBucket}', "time") AS "time", team_id, LAST(points, "time") AS points
+      FROM team_points WHERE "time" >= $1 AND "time" < $2
+      GROUP BY 1, team_id ORDER BY "time" ASC, team_id ASC;`;
   } else {
-    // SELECT team_id, time FROM team_points ORDER BY time DESC LIMIT 1 ;
-    // Detailed Query
-    console.info("Building detailed query...");
     queryString = `
-          SELECT time, team_id, points FROM team_points
-          WHERE "time" >= $1 AND "time" < $2
-          ORDER BY "time" ASC, team_id ASC;`;
+      SELECT time, team_id, points FROM team_points
+      WHERE "time" >= $1 AND "time" < $2
+      ORDER BY "time" ASC, team_id ASC;`;
   }
 
   console.info(
@@ -259,33 +265,91 @@ export async function getTeamPointsByRange(
   return result.rows;
 }
 
-export async function getUsersPointsByRange(start: Date, end: Date) {
-  let queryString = `
-    SELECT time, user_id, points FROM user_points
-    WHERE "time" >= $1 AND "time" < $2
-    ORDER BY "time" ASC, user_id ASC;`;
+export async function getUsersPointsByRange(
+  userId: string,
+  start: Date,
+  end: Date
+) {
+  const entriesExpected = 50;
+  const timeDifference = end.getTime() - start.getTime();
+  let timeBucket: string | undefined = undefined;
+  const hoursForExpectedEntries = Math.floor(
+    timeDifference / (1000 * 60 * 60) / entriesExpected
+  );
+  const minutesForExpectedEntries = Math.floor(
+    timeDifference / (1000 * 60) / entriesExpected
+  );
+  if (hoursForExpectedEntries > 0) {
+    timeBucket = `${hoursForExpectedEntries} hours`;
+  } else if (minutesForExpectedEntries >= 10) {
+    timeBucket = `${minutesForExpectedEntries} minutes`;
+  }
+
+  let queryString = "";
+  if (timeBucket) {
+    queryString = `
+          SELECT time_bucket('${timeBucket}', "time") AS "time", user_id, LAST(points, "time") AS points
+          FROM user_points WHERE user_id = $3 AND "time" >= $1 AND "time" < $2
+          GROUP BY 1, user_id ORDER BY "time" ASC, user_id ASC;`;
+  } else {
+    queryString = `
+      SELECT time, user_id, points FROM user_points
+      WHERE user_id = $3 AND "time" >= $1 AND "time" < $2
+      ORDER BY "time" ASC, user_id ASC;`;
+  }
 
   console.info(
     `Executing query: ${queryString.replace(/\s+/g, " ").trim()} with params:`,
-    [start.toISOString(), end.toISOString()]
+    [start.toISOString(), end.toISOString(), userId]
   );
 
   // Execute query using the pool
   const result: QueryResult<{ time: Date; user_id: string; points: number }> =
-    await pool.query(queryString, [start.toISOString(), end.toISOString()]);
+    await pool.query(queryString, [
+      start.toISOString(),
+      end.toISOString(),
+      userId,
+    ]);
 
   return result.rows;
 }
 
-export async function getUsersActivityPointsByRange(start: Date, end: Date) {
-  let queryString = `
+export async function getUsersActivityPointsByRange(
+  userId: string,
+  start: Date,
+  end: Date
+) {
+  const entriesExpected = 50;
+  const timeDifference = end.getTime() - start.getTime();
+  let timeBucket: string | undefined = undefined;
+  const hoursForExpectedEntries = Math.floor(
+    timeDifference / (1000 * 60 * 60) / entriesExpected
+  );
+  const minutesForExpectedEntries = Math.floor(
+    timeDifference / (1000 * 60) / entriesExpected
+  );
+  if (hoursForExpectedEntries > 0) {
+    timeBucket = `${hoursForExpectedEntries} hours`;
+  } else if (minutesForExpectedEntries >= 10) {
+    timeBucket = `${minutesForExpectedEntries} minutes`;
+  }
+
+  let queryString = "";
+  if (timeBucket) {
+    queryString = `
+      SELECT time_bucket('${timeBucket}', "time") AS "time", user_id, activity_id, LAST(value, "time") AS value, LAST(points, "time") AS points
+      FROM user_activity_points WHERE user_id = $3 AND "time" >= $1 AND "time" < $2
+      GROUP BY 1, user_id, activity_id ORDER BY "time" ASC, user_id ASC;`;
+  } else {
+    queryString = `
       SELECT time, user_id, activity_id, value, points FROM user_activity_points
-      WHERE "time" >= $1 AND "time" < $2
+      WHERE user_id = $3 AND "time" >= $1 AND "time" < $2
       ORDER BY "time" ASC, user_id ASC;`;
+  }
 
   console.info(
     `Executing query: ${queryString.replace(/\s+/g, " ").trim()} with params:`,
-    [start.toISOString(), end.toISOString()]
+    [start.toISOString(), end.toISOString(), userId]
   );
 
   // Execute query using the pool
@@ -295,7 +359,11 @@ export async function getUsersActivityPointsByRange(start: Date, end: Date) {
     activity_id: string;
     value: number;
     points: number;
-  }> = await pool.query(queryString, [start.toISOString(), end.toISOString()]);
+  }> = await pool.query(queryString, [
+    start.toISOString(),
+    end.toISOString(),
+    userId,
+  ]);
 
   return result.rows;
 }
