@@ -14,6 +14,7 @@ import {
   stopIntervalPointsQuerying,
 } from "./intervalQuery.ts";
 import { initializeDatabase } from "./scripts/init-db.ts";
+import cors from "@fastify/cors";
 
 interface PointsQueryString {
   startDate: string;
@@ -95,6 +96,9 @@ const fastify: FastifyInstance = Fastify({
   logger: process.env.NODE_ENV === "development",
 });
 
+fastify.register(cors, {
+  origin: "*",
+});
 fastify.register(FastifyWebsocket, {
   options: {
     clientTracking: true,
