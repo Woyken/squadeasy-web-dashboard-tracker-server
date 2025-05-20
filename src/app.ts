@@ -135,6 +135,7 @@ fastify.get<{ Querystring: PointsQueryString; Params: { userId: string } }>(
 
     const start = new Date(startDateStr);
     const end = new Date(endDateStr);
+    const now = new Date();
 
     if (isNaN(start.getTime()) || isNaN(end.getTime())) {
       await reply.code(400).send({
@@ -145,6 +146,10 @@ fastify.get<{ Querystring: PointsQueryString; Params: { userId: string } }>(
     }
     if (start >= end) {
       await reply.code(400).send({ error: "startDate must be before endDate" });
+      return;
+    }
+    if (start > now || end > now) {
+      await reply.code(400).send({ error: "Dates cannot be in the future" });
       return;
     }
 
@@ -186,6 +191,7 @@ fastify.get<{ Querystring: PointsQueryString; Params: { userId: string } }>(
 
     const start = new Date(startDateStr);
     const end = new Date(endDateStr);
+    const now = new Date();
 
     if (isNaN(start.getTime()) || isNaN(end.getTime())) {
       await reply.code(400).send({
@@ -196,6 +202,10 @@ fastify.get<{ Querystring: PointsQueryString; Params: { userId: string } }>(
     }
     if (start >= end) {
       await reply.code(400).send({ error: "startDate must be before endDate" });
+      return;
+    }
+    if (start > now || end > now) {
+      await reply.code(400).send({ error: "Dates cannot be in the future" });
       return;
     }
 
@@ -235,6 +245,7 @@ fastify.get<{ Querystring: PointsQueryString }>(
 
     const start = new Date(startDateStr);
     const end = new Date(endDateStr);
+    const now = new Date();
 
     if (isNaN(start.getTime()) || isNaN(end.getTime())) {
       await reply.code(400).send({
@@ -245,6 +256,10 @@ fastify.get<{ Querystring: PointsQueryString }>(
     }
     if (start >= end) {
       await reply.code(400).send({ error: "startDate must be before endDate" });
+      return;
+    }
+    if (start > now || end > now) {
+      await reply.code(400).send({ error: "Dates cannot be in the future" });
       return;
     }
 
